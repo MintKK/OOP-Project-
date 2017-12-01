@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, request, render_template, session, send_from_directory, flash
+# Import all needed modules with one statement
 
 # For HTTP get and post methods
 from flask import request
@@ -10,7 +11,7 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route('//')
+@app.route('/')
 def home_main():
     return render_template("Home_Main.html")
 
@@ -19,7 +20,6 @@ def home_main():
 @app.route("/hello/<username>/")
 def hello_user(username):
     return "Hello {}".format(username)
-
 
 # End code to execute
 if __name__ == '__main__':
