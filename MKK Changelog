@@ -1,0 +1,7 @@
+7/12/2017
+- Added bootstrap-calendar-master template, still requires basic BootStrap file integration to remove file redundancy and understanding of some files.
+- Integrated basic Firebase database features, requires reviewing
+- Added Ahmad's feedback email route, "/Feedback/"
+- Added unchecked Flask app features to routing file
+- Added common template files, however not complete with issues on Jinja2
+- Lost changes made on 6/12/2017, lost in memory as well
