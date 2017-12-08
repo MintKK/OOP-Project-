@@ -5,3 +5,9 @@
 - Added unchecked Flask app features to routing file
 - Added common template files, however not complete with issues on Jinja2
 - Lost changes made on 6/12/2017, lost in memory as well
+8/12/2017
+- Commented out CSS code in freelancer.min.css for navigation bar, id mainNav, to remove the navbar resizing and scrollspy feature ON SMALL SCREEN (Mobile adaptation).
+- Improved Layout.html to be able to include custom CSS and JS files, either preloaded or loaded after the HTML elements
+- Added in internal CSS to Layout.html to resize header
+- Layout and example page completed, homepage not done - It is currently used as the example page
+

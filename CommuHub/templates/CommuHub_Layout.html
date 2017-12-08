@@ -18,6 +18,13 @@
     <!-- Custom css for this template -->
     <link href="../static/css/freelancer.min.css" rel="stylesheet">
 
+    <!-- Custom internal CSS -->
+    <style>
+        header.masthead {
+            padding-top: 90px;
+        }
+    </style>
+
     <!-- Custom page css -->
     {% block additionalstyles %}{% endblock %}
 
@@ -28,7 +35,7 @@
     {%  block additionalprescripts %}{% endblock %}
 
 </head>
-<body>
+<body id="page-top">
 
     {% include 'includes/_navbar.html' %}
     {% include 'includes/_message.html' %}
@@ -36,6 +43,13 @@
     {% block body %}{% endblock %}
 
     {% include 'includes/_footer.html' %}
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top d-lg-none">
+      <a class="btn btn-primary js-scroll-trigger" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
 
 <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

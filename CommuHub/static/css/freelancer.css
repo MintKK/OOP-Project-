@@ -134,7 +134,7 @@ section.success {
       background-color: #18BC9C; }
 
 @media (min-width: 992px) {
-  #mainNav {
+  /*#mainNav {
     padding-top: 25px;
     padding-bottom: 25px;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
@@ -144,7 +144,7 @@ section.success {
       font-size: 2em;
       -webkit-transition: all 0.3s;
       -moz-transition: all 0.3s;
-      transition: all 0.3s; }
+      transition: all 0.3s; }*/
     #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
       color: white;
       border-radius: 3px;
@@ -316,7 +316,6 @@ header.masthead {
     -moz-transition: top 0.3s ease, opacity 0.3s ease;
     -ms-transition: top 0.3s ease, opacity 0.3s ease;
     transition: top 0.3s ease, opacity 0.3s ease;
-    vertical-align: middle;
     vertical-align: baseline;
     opacity: 0; }
   .floating-label-form-group:not(:first-child) {
