@@ -1,12 +1,92 @@
 {% extends "CommuHub_Layout.html" %}
 
+{% block additionalstyles %}
+<style>
+    /* Tooltip text */
+    .tooltip {
+        font-size: 100%;
+    }
+
+    /* Tooltip container */
+    .tooltip-inner {
+
+    }
+
+    /* Animated box, "box-shadow" */
+    .box {
+      position: relative;
+      /*box-shadow: 0 1px 2px rgba(0,0,0,0.15);*/
+      transition: all 0.3s ease-in-out;
+    }
+    .box::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      /*box-shadow: 0 5px 15px rgba(0,0,0,0.3);*/
+      transition: opacity 0.3s ease-in-out;
+    }
+    .box:hover {
+      transform: scale(1.11, 1.11);
+    }
+    .box:hover::after {
+      opacity: 1;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
-    <div class="jumbotron text-center">
-        <h1>Whatever you want to put on the page, put between the body block like this</h1>
-        <h2>Navigation bar and the footer are applied automatically, make duplicates of this page to work in</h2>
-        <p><b>Make changes to the navigation bar for new pages by editing the _navbar.html OR you can notify Min Khant Ko.</b></p>
-        <p><b>New pages would also need new routes, send your routing codes to Khant and he will edit the routing file, please do not edit the routing file by yourself.</b></p>
-        <p><b>Refer to index.html for features you can add into your own page, DO NOT EDIT THIS PAGE IT IS FOR REFERENCE</b></p>
-        <p>Notes about our template: Header tags e.g. &lt;h1&gt; have uppercase text. Like other templates of this kind, all elements are centered by default. Do share any other features you find out if you want.</p>
+<header class="masthead">
+  <div class="container">
+
+    <div style="margin-bottom: 2%; margin-top: 50px; font-size: 200%">
+        <b>Pick a service</b>
+        <span data-toggle="tooltip" data-placement="right" title="Click on the pictures to navigate">
+            <span style="font-size: 130%;" class="fa fa-2x fa-question-circle-o text-primary sr-icons"></span>
+        </span>
     </div>
+
+    <hr style="border-width: thick" />
+
+    <div class="row">
+
+        <span style="margin-right: auto; margin-left: auto;">
+            <span style="font-size: 200%;">Donation market</span>
+            <hr />
+            <div class="box" style="border-radius: 50%; display: block;">
+                <a style="border-radius: 50%; display: block;" href="#"><img style="border-radius: 50%; height: 512px; width: 512px;" class="img-fluid" src="../static/img/Donation_Present_Original.jpg" alt="" /></a>
+            </div>
+        </span>
+
+        <span style="margin-right: auto; margin-left: auto;">
+            <span style="font-size: 200%;">Community events</span>
+            <hr />
+            <div class="box" style="border-radius: 50%; display: block;">
+                <a style="border-radius: 50%; display: block;" href="#"><img style="border-radius: 50%;" class="img-fluid" src="../static/img/Event_Tent_Original.png" alt="" /></a>
+            </div>
+        </span>
+
+    </div>
+
+    <div class="intro-text">
+        <hr class="star-light" />
+
+        <span class="name">
+            {{ returnDate }}
+        </span>
+    </div>
+
+  </div>
+</header>
+{% endblock %}
+
+{% block additionalscripts %}
+<script>
+/* For tooltips */
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 {% endblock %}

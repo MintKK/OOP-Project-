@@ -2,6 +2,9 @@ from flask import Flask, redirect, url_for, request, render_template, session, s
 from flask_mail import Mail, Message
 from jinja2 import Template
 
+import CommuHub.CommuHub_Forms as customForms
+import CommuHub.Time_Functions as timeFunctions
+
 import firebase_admin
 from firebase_admin import credentials, db
 
@@ -31,7 +34,7 @@ app.config.update(
 
 @app.route('/')
 def home_main():
-    return render_template("CommuHub_Home.html")
+    return render_template("CommuHub_Home.html", returnDate = timeFunctions.returnCurrentDate())
 
 mail = Mail(app)
 @app.route('/Feedback', methods=['GET', 'POST'])
@@ -56,4 +59,5 @@ def hello_user(username):
 # End code to execute
 if __name__ == '__main__':
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
-    app.run(debug=True)
+    app.run()
+    # app.run(debug=True)  optimisation?

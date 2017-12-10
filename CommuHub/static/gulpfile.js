@@ -18,7 +18,7 @@ var banner = ['/*!\n',
 ].join('');
 
 // Compiles SCSS files from /scss into /css
-gulp.task('sass', function() {
+/*gulp.task('sass', function() {
   return gulp.src('scss/freelancer.scss')
     .pipe(sass())
     .pipe(header(banner, {
@@ -28,7 +28,7 @@ gulp.task('sass', function() {
     .pipe(browserSync.reload({
       stream: true
     }))
-});
+});*/
 
 // Minify compiled CSS
 gulp.task('minify-css', ['sass'], function() {
@@ -103,7 +103,7 @@ gulp.task('browserSync', function() {
 
 // Dev task with browserSync
 gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
-  gulp.watch('scss/*.scss', ['sass']);
+  //gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('css/*.css', ['minify-css']);
   gulp.watch('js/*.js', ['minify-js']);
   // Reloads the browser whenever HTML or JS files change

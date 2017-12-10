@@ -10,4 +10,17 @@
 - Improved Layout.html to be able to include custom CSS and JS files, either preloaded or loaded after the HTML elements
 - Added in internal CSS to Layout.html to resize header
 - Layout and example page completed, homepage not done - It is currently used as the example page
-
+9/12/2017
+- Commented out scss related code in gulp.js to prevent possible overriding of edited freelancer.css
+- Possibility to delete scss files that were included with the default template in future, to optimise space
+- Possbility to delete jQuery easing files as well for optimisation - Currently they are unused
+- Deleted bootstrap.reboot and bootstrap.grid CSS files for optimisation
+- Cropped and added 2 images from online for homepage icons (Note: I never want to do cropping again)
+- Created additional file for custom CSS
+10/12/2017
+- Removed edited images to use smoother originals
+- Added animations and designs to homepage icons
+- Note for error where CommuHub_custom.css cannot be linked to HTML with Jinja2 block, used internal CSS instead
+- Created Time_Functions.py to store time related codes
+- Added current date display on homepage
+- Homepage initial design completed
