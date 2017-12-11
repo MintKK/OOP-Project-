@@ -1,0 +1,3 @@
+11/12/17
+- Mock login bar added, added to js folder - form.js, added to css folder - loginPanel.css, added to templates folder - Login.html. Currently unusable
+- Mock login bar requires fixing, integration and improvement...
