@@ -1,19 +1,19 @@
 from flask import Flask, redirect, url_for, request, render_template, session, send_from_directory, flash, escape, g, abort
-from flask_mail import Mail, Message
+'''from flask_mail import Mail, Message'''
 from jinja2 import Template
 
 import CommuHub.CommuHub_Forms as customForms
 import CommuHub.Time_Functions as timeFunctions
 
-import firebase_admin
-from firebase_admin import credentials, db
+'''import firebase_admin
+from firebase_admin import credentials, db'''
 
-cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-5449d3e484.json")
+'''cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-5449d3e484.json")
 default_app = firebase_admin.initialize_app(cred, {
     "databaseURL": 'https://commuhub-2017.firebaseio.com/'
 })
 
-root = db.reference()
+root = db.reference()'''
 
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
@@ -36,7 +36,7 @@ app.config.update(
 def home_main():
     return render_template("CommuHub_Home.html", returnDate = timeFunctions.returnCurrentDate())
 
-mail = Mail(app)
+'''mail = Mail(app)
 @app.route('/Feedback', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -49,7 +49,7 @@ def index():
         mail.send(msg)
         return render_template('idex.html')
 
-    return render_template('idex.html')
+    return render_template('idex.html')'''
 
 # Note using URL strings as arguments and "returned" strings are parsed as HTML
 @app.route("/hello/<username>/")
