@@ -35,10 +35,13 @@ app.config.update(
 @app.route('/')
 @app.route('/<path:page>')
 def show_page(page=None):
-    if page:  # Called with a argument for page, that's not homepage
-        return render_template("{}.html".format(page))
-    elif page == "CommuHub_Home" or not page:  # Just the base host URL or homepage
+    # print(page)  To test for page
+    if page == "CommuHub_Home" or not page:  # Just the base host URL or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
+    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage
+        return render_template("{}.html".format(page))
+    else:  # For favicon request
+        return page
 
 mail = Mail(app)
 @app.route('/Feedback', methods=['GET', 'POST'])
