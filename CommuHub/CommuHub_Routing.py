@@ -18,7 +18,7 @@ root = db.reference()
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
 
-# Testing
+# Might need later
 # app.config.from_object()
 
 # Ahmad's config update - Currently used for email(?)
@@ -36,7 +36,7 @@ app.config.update(
 @app.route('/<path:page>')
 def show_page(page=None):
     # print(page)  To test for page
-    if page == "CommuHub_Home" or not page:  # Just the base host URL or homepage
+    if page == "CommuHub_Home" or not page:  # Just the base host URL (no page value set) or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
     elif page != "favicon.ico":  # Called with a argument for page, that's not homepage
         return render_template("{}.html".format(page))
@@ -65,6 +65,6 @@ def hello_user(username):
 
 # End code to execute
 if __name__ == '__main__':
-    # app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
+    app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
     app.run()
     # app.run(debug=True)  optimisation?
