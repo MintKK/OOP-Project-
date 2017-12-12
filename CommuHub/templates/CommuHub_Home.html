@@ -1,6 +1,8 @@
 {% extends "CommuHub_Layout.html" %}
 
 {% block additionalstyles %}
+<!-- Check how to link -->
+<!-- <link href="{{ url_for("static", filename="css/CommuHub_custom.css") }}" rel="stylesheet" /> -->
 <style>
     /* Tooltip text */
     .tooltip {
@@ -56,7 +58,7 @@
             <span style="font-size: 200%;">Donation market</span>
             <hr />
             <div class="box" style="border-radius: 50%; display: block;">
-                <a style="border-radius: 50%; display: block;" href="#"><img style="border-radius: 50%; height: 512px; width: 512px;" class="img-fluid" src="../static/img/Donation_Present_Original.jpg" alt="" /></a>
+                <a style="border-radius: 50%; display: block;" href="{{ url_for("show_page", page="Donation_Market_Main") }}"><img style="border-radius: 50%; height: 512px; width: 512px;" class="img-fluid" src="../static/img/Donation_Present_Original.jpg" alt="" /></a>
             </div>
         </span>
 

@@ -24,3 +24,9 @@
 - Created Time_Functions.py to store time related codes
 - Added current date display on homepage
 - Homepage initial design completed
+11/12/2017
+- Note to change the href of the CSS and JS file links on CommuHub_Layout.html, from relative file paths to url_for() paths.
+- Failed to optimise links some CSS and JS to HTML, seek guidance
+- Created a universal URL navigation route+function in CommuHub_Routing.py, unique URLs and functions are now only required for routes doing operations
+- Preparing templates for donation market...
+- Error with passing in CommuHub_Home as page in route, seek guidance
