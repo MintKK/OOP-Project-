@@ -1,42 +1,8 @@
 {% extends "CommuHub_Layout.html" %}
 
 {% block additionalstyles %}
-<!-- Check how to link -->
-<!-- <link href="{{ url_for("static", filename="css/CommuHub_custom.css") }}" rel="stylesheet" /> -->
-<style>
-    /* Tooltip text */
-    .tooltip {
-        font-size: 100%;
-    }
-
-    /* Tooltip container */
-    .tooltip-inner {
-
-    }
-
-    /* Animated box, "box-shadow" */
-    .box {
-      position: relative;
-      /*box-shadow: 0 1px 2px rgba(0,0,0,0.15);*/
-      transition: all 0.3s ease-in-out;
-    }
-    .box::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      /*box-shadow: 0 5px 15px rgba(0,0,0,0.3);*/
-      transition: opacity 0.3s ease-in-out;
-    }
-    .box:hover {
-      transform: scale(1.11, 1.11);
-    }
-    .box:hover::after {
-      opacity: 1;
-    }
-</style>
+<!-- Check link -->
+<link href="{{ url_for("static", filename="css/CommuHub_custom.css") }}" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
