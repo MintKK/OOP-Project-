@@ -34,3 +34,6 @@
 - Error with passing in CommuHub_Home as page in route, fixed - Was logic error
 - Due to contributor's mistake was forced to merge branches, resolved code and branches
 - Commented out codes in Bootstrap template's gulpfile.js to prevent tasks and default code generationn
+13/12/2017
+- CSS error on Commuhub_Home.html has resurfaced - Need follow up
+- Due to mistake by contributors, have to revise all code and override master branch in repository
