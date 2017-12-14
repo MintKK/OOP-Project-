@@ -6,7 +6,7 @@
 - Added common template files, however not complete with issues on Jinja2
 - Lost changes made on 6/12/2017, lost in memory as well
 8/12/2017
-- Commented out CSS code in freelancer.min.css for navigation bar, id mainNav, to remove the navbar resizing and scrollspy feature ON SMALL SCREEN (Mobile adaptation).
+- Commented out CSS code in freelancer.min.css for navigation bar, id mainNav, to remove the navbar resizing feature ON SMALL SCREEN (Mobile adaptation).
 - Improved Layout.html to be able to include custom CSS and JS files, either preloaded or loaded after the HTML elements
 - Added in internal CSS to Layout.html to resize header
 - Layout and example page completed, homepage not done - It is currently used as the example page
@@ -24,3 +24,16 @@
 - Created Time_Functions.py to store time related codes
 - Added current date display on homepage
 - Homepage initial design completed
+11/12/2017
+- Note to change the href of the CSS and JS file links on CommuHub_Layout.html, from relative file paths to url_for() paths.
+- Created a universal URL navigation route+function in CommuHub_Routing.py, unique URLs and functions are now only required for routes doing operations
+- Preparing templates for donation market...
+- Error with passing in CommuHub_Home as page in route
+- Failed to optimise links some CSS and JS to HTML, seek guidance - Recheck
+12/12/2017
+- Error with passing in CommuHub_Home as page in route, fixed - Was logic error
+- Due to contributor's mistake was forced to merge branches, resolved code and branches
+- Commented out codes in Bootstrap template's gulpfile.js to prevent tasks and default code generationn
+13/12/2017
+- CSS error on Commuhub_Home.html has resurfaced - Need follow up
+- Due to mistake by contributors, have to revise all code and override master branch in repository
