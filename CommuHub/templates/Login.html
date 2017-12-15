@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
+		<link rel="stylesheet" href="../static/css/Login.css">
+=======
+		<title>Mock login</title>
+		<!--CSS Links-->
+		<link rel="stylesheet" href="../static/css/loginPanel.css">
+		<!--fonts-->
+>>>>>>> Added second-hand login bar/panel, needs fixing and integration
+		<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+	</head>
+	<body>
+		<nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-collapse collapse" id="bs-navbar">
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" id="now"></a></li>
+						<li><a class="page-scroll" data-toggle="modal" title="Login" href="#login">Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav> 
+	<div id="login" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form id="form1" name="form1" onsubmit="details()">
+                        <div class="form-group">
+
+<<<<<<< HEAD
+                            <label for="name" class="col-2 col-form-label">Name</label><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                            <div class="col-10"><input type="text" class="form-control" id="name" value="" name="name" pattern="([a-zA-Z_ ]{1,40})$" required><placeholder>Your name</placeholder></div>
+<br>
+                            <label for="contact no" class="col-2 col-form-label">Contact</label>
+                            <div class="col-10"><input class="form-control" type="tel" pattern="^([896]{1})(\d{7})$" maxlength="8" id="contact" value="" name="contact" oninvalid="Invalid number" required><placeholder>+65 --------</placeholder></div>
+=======
+                            <label for="name" class="col-2 col-form-label">Name</label>
+                            <div class="col-10"><input type="text" class="form-control" id="name" value="" name="name" pattern="([a-zA-Z_ ]{1,40})$" required><placeholder>Your name</placeholder></div>
+<br>
+                            <label for="contact" class="col-2 col-form-label">Contact</label>
+                            <div class="col-10"><input class="form-control" type="tel" pattern="^([896]{1})(\d{7})$" maxlength="8" id="contact" value="" name="contact" oninvalid="Invalid_number" required><placeholder>+65 --------</placeholder></div>
+>>>>>>> Added second-hand login bar/panel, needs fixing and integration
+<br>
+                            <label for="email" class="col-2 col-form-label">Email</label>
+                            <div class="col-10"><input class="form-control" type="email" pattern="^([a-zA-Z0-9._%+-])+@([a-zA-Z0-9.-])+\.([a-zA-Z]{2,})$" oninvalid="Invalid Email format" id="email" value="" name="email" required><placeholder>abc@xyz.com</placeholder></div>
+                        </div>
+						
+                         <button type="submit" class="btn btn-success pull-left">Login</button>  
+                       	 <button class="btn btn-info pull-right" data-dismiss="modal" aria-hidden="true">back</button>
+<br>                
+<br>                
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<<<<<<< HEAD
+	<script src="../static/js/Login.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
+	<script src="../static/js/form.js"></script>
+	<!-- <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+>>>>>>> Added second-hand login bar/panel, needs fixing and integration
+	</body>
+</html>

@@ -27,3 +27,14 @@
 .box:hover::after {
   opacity: 1;
 }
+
+/* a tag buttons on table */
+#submit_data, #add_row {
+    font-size: 100%;
+    cursor: pointer
+}
+
+/* For overriding btn CSS if needed */
+.btn {
+
+}

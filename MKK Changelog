@@ -39,4 +39,7 @@
 - Due to mistake by contributors, have to revise all code and force-push to master branch
 14/12/2017
 - CSS error fixed again - Uncertain reason
-- Implementing donation market front end...
+- Implementing donation market front end... (Unfinsihed)
+- Integrated other contributors' parts; static and Python file ownerships - Chester owns Login.js, form.js, Login.css, loginPanel.css, LoginSaveFile.py (Other files not checked)
+- Mistake in addition of donation market templates, restarting...
+
