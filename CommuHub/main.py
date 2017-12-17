@@ -9,7 +9,7 @@ def calendar():
     return render_template("json.html")
 
 
-@app.route('/calendardata')
+@app.route('/data')
 def return_calendardata():
     start_date = request.args.get('start', '')
     end_date = request.args.get('end', '')
