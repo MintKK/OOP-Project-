@@ -3,3 +3,6 @@ E.g. HTML page link;
 
 Note CSS for sizing;
 box-sizing property : border-box property
+
+From "Connecting Firebase to a contact form" video;
+HTML submit button will try to send to HTML page by default, to prevent this use <event>.preventDefault() method in the fired function upon button click.
