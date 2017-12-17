@@ -4,13 +4,13 @@ import json
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/json')
 def calendar():
     return render_template("json.html")
 
 
-@app.route('/data')
-def return_data():
+@app.route('/jsondata')
+def return_calendardata():
     start_date = request.args.get('start', '')
     end_date = request.args.get('end', '')
 
