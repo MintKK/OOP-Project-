@@ -36,4 +36,10 @@
 - Commented out codes in Bootstrap template's gulpfile.js to prevent tasks and default code generationn
 13/12/2017
 - CSS error on Commuhub_Home.html has resurfaced - Need follow up
-- Due to mistake by contributors, have to revise all code and override master branch in repository
+- Due to mistake by contributors, have to revise all code and force-push to master branch
+14/12/2017
+- CSS error fixed again - Uncertain reason
+- Implementing donation market front end... (Unfinsihed)
+- Integrated other contributors' parts; static and Python file ownerships - Chester owns Login.js, form.js, Login.css, loginPanel.css, LoginSaveFile.py (Other files not checked)
+- Mistake in addition of donation market templates, restarting...
+
