@@ -62,6 +62,8 @@ def donationMarketMain():
         if eachListing:
             pass
 
+    return render_template("Donation_Market_Main.html")
+
 @app.route('/calendardata')
 def return_calendardata():
     start_date = request.args.get('start', '')
