@@ -46,3 +46,8 @@
 - Commented out old file upload widget code, will delete after checking new form
 - Event calendar page name set to json(.html)
 - json.html not integrated
+9/1/2018
+- Debug and "Donation Market" idea changed - New "Donation Projects" idea
+10/1/2018
+- Adding files and code for initial deployment with Heroku
+

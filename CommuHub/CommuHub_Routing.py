@@ -42,27 +42,25 @@ def show_page(page=None):
     # print(page)  To test for page
     if page == "CommuHub_Home" or not page:  # Just the base host URL (no page value set) or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
-    #Temporary for FAQ
-    elif page == "FAQ.html":
-        return render_template("FAQ.html")
     elif page == "Donation_Market_Main":
-        return redirect(url_for("donationMarketMain"))
+        return redirect(url_for('donationMarketMain'))
     elif page != "favicon.ico":  # Called with a argument for page, that's not homepage
         return render_template("{}.html".format(page))
     else:  # For favicon request
         return page
 
+@app.route('/Donation_Market_Main')
 def donationMarketMain():
-    listings = root.child("listings").get()
+    '''listings = root.child("listings").get()
     listingslist = []
     for listingId in listings:
         eachListing = listings[listingId]
         #print(listingId)
 
         if eachListing:
-            pass
+            pass'''
 
-    return render_template("Donation_Market_Main.html")
+    return render_template("Donation_Projects_Main.html")
 
 @app.route('/calendardata')
 def return_calendardata():
@@ -96,5 +94,5 @@ def hello_user(username):
 # End code to execute
 if __name__ == '__main__':
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
-    app.run()
+    app.run(port="80")
     # app.run(debug=True)  optimisation?
