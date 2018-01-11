@@ -50,4 +50,6 @@
 - Debug and "Donation Market" idea changed - New "Donation Projects" idea
 10/1/2018
 - Adding files and code for initial deployment with Heroku
+11/1/2018
+- Made a new branch for Heroku deployment, main development will now take place in deploy branch - master branch is now for testing
 
