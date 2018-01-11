@@ -51,4 +51,5 @@
 10/1/2018
 - Adding files and code for initial deployment with Heroku
 11/1/2018
-- Made a new branch for Heroku deployment, link to Commuhub_custom.css changed due to error with Heroku loading
+- Made a new branch for Heroku deployment
+- Changed folder structure and cleaned some codes
