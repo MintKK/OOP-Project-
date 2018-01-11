@@ -1,1 +1,1 @@
-web: gunicorn CommuHub_Routing:app
+web: gunicorn CommuHub/CommuHub_Routing:app
