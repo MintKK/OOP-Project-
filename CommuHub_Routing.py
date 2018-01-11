@@ -94,5 +94,5 @@ def hello_user(username):
 # End code to execute
 if __name__ == '__main__':
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
-    app.run(port="80")
-    # app.run(debug=True)  optimisation?
+    app.run(debug=True, port=80)
+ 
