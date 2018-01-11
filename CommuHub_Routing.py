@@ -3,8 +3,8 @@ from flask_mail import Mail, Message
 from jinja2 import Template
 
 import json
-import CommuHub.CommuHub_Forms as customForms
-import CommuHub.Time_Functions as timeFunctions
+import CommuHub_Forms as customForms
+import Time_Functions as timeFunctions
 
 # Ahmad's calendar
 import calendar
