@@ -12,7 +12,7 @@ import calendar
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-5449d3e484.json")
+cred = credentials.Certificate("cred/Firebase service account admin key")
 default_app = firebase_admin.initialize_app(cred, {
     "databaseURL": 'https://commuhub-2017.firebaseio.com/'
 })
@@ -82,9 +82,9 @@ def index():
                                                                                       request.form['subject'],
                                                                                       request.form['message'])
         mail.send(msg)
-        return render_template('idex.html')
+        return render_template('index.html')
 
-    return render_template('idex.html')
+    return render_template('index.html')
 
 # Note using URL strings as arguments and "returned" strings are parsed as HTML
 @app.route("/hello/<username>/")
