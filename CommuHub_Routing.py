@@ -12,10 +12,11 @@ import calendar
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-5449d3e484.json")
-default_app = firebase_admin.initialize_app(cred, {
-    "databaseURL": 'https://commuhub-2017.firebaseio.com/'
-})
+cred = credentials.Certificate("")
+default_app = firebase_admin.initialize_app(
+    cred,
+    {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
+)
 
 root = db.reference()
 
@@ -42,14 +43,12 @@ def show_page(page=None):
     # print(page)  To test for page
     if page == "CommuHub_Home" or not page:  # Just the base host URL (no page value set) or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
-    elif page == "Donation_Market_Main":
-        return redirect(url_for('donationMarketMain'))
-    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage
+    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage or favicon
         return render_template("{}.html".format(page))
     else:  # For favicon request
         return page
 
-@app.route('/Donation_Market_Main')
+@app.route('/Donation_Projects_Main')
 def donationMarketMain():
     '''listings = root.child("listings").get()
     listingslist = []

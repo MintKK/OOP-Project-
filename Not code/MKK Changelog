@@ -53,3 +53,7 @@
 11/1/2018
 - Made a new branch for Heroku deployment
 - Changed folder structure and cleaned some codes
+13/1/2018
+- Added a favicon to the site
+16/1/2018
+- Set up new (proper) Firebase connections
