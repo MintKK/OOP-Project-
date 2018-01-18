@@ -20,16 +20,6 @@ default_app = firebase_admin.initialize_app(
 
 root = db.reference()
 
-import pyrebase
-config = {
-  "apiKey": "apiKey",
-  "authDomain": "projectId.firebaseapp.com",
-  "databaseURL": "https://databaseName.firebaseio.com",
-  "storageBucket": "projectId.appspot.com",
-  "serviceAccount": "path/to/serviceAccountCredentials.json"
-}
-pyfirebase_app = pyrebase.initialize_app(config)
-
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
 
