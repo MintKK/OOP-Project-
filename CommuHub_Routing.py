@@ -12,12 +12,23 @@ import calendar
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-5449d3e484.json")
-default_app = firebase_admin.initialize_app(cred, {
-    "databaseURL": 'https://commuhub-2017.firebaseio.com/'
-})
+cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
+default_app = firebase_admin.initialize_app(
+    cred,
+    {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
+)
 
 root = db.reference()
+
+import pyrebase
+config = {
+  "apiKey": "apiKey",
+  "authDomain": "projectId.firebaseapp.com",
+  "databaseURL": "https://databaseName.firebaseio.com",
+  "storageBucket": "projectId.appspot.com",
+  "serviceAccount": "path/to/serviceAccountCredentials.json"
+}
+pyfirebase_app = pyrebase.initialize_app(config)
 
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
@@ -42,14 +53,12 @@ def show_page(page=None):
     # print(page)  To test for page
     if page == "CommuHub_Home" or not page:  # Just the base host URL (no page value set) or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
-    elif page == "Donation_Market_Main":
-        return redirect(url_for('donationMarketMain'))
-    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage
+    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage or favicon
         return render_template("{}.html".format(page))
     else:  # For favicon request
         return page
 
-@app.route('/Donation_Market_Main')
+@app.route('/Donation_Projects_Main')
 def donationMarketMain():
     '''listings = root.child("listings").get()
     listingslist = []
@@ -94,5 +103,5 @@ def hello_user(username):
 # End code to execute
 if __name__ == '__main__':
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
-    app.run(debug=True, port=80)
+    app.run(port=80, debug=True)
 

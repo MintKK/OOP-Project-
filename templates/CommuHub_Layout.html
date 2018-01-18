@@ -4,6 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ url_for("static", filename="img/CommuHub logo image.png") }}" type="image/x-icon">
     <meta name="description" content="December 2017">
     <meta name="author" content="Min Khant Ko">
     <title>CommuHub</title>
@@ -59,7 +60,7 @@
                             <label for="name" class="col-2 col-form-label">Name</label><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                             <div class="col-10"><input type="text" class="form-control" id="name" value="" name="name" pattern="([a-zA-Z_ ]{1,40})$" required></div>
                             <label for="password" class="col-2 col-form-label">Password</label>
-                            <div class="col-10"><input class="form-control" type="password" pattern="^(?=.*[a-z])[A-Za-z0-9\d=!\-@._*]+$" oninvalid="Invalid Password format" id="password" value="" name="password" required></div>
+                            <div class="col-10"><input class="form-control" type="password" pattern="^(?=.*[a-z])[A-Za-z0-9\d=!\-@._*]+$" oninvalid="" id="password" value="" name="password" required></div>
                         </div>
 
                          <button type="submit" class="btn btn-success pull-left">Login</button>
@@ -86,7 +87,22 @@
 
     {% include 'includes/_modals.html' %}
 
-<!-- Bootstrap core JavaScript -->
+    <!-- Firebase connection -->
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyB-GRQBAeRWDpCrNM1TwBarLnIYaXkEjrk",
+        authDomain: "commuhub-2017.firebaseapp.com",
+        databaseURL: "https://commuhub-2017.firebaseio.com",
+        projectId: "commuhub-2017",
+        storageBucket: "commuhub-2017.appspot.com",
+        messagingSenderId: "918109022832"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
