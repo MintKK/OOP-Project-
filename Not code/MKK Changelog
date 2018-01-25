@@ -42,4 +42,18 @@
 - Implementing donation market front end... (Unfinsihed)
 - Integrated other contributors' parts; static and Python file ownerships - Chester owns Login.js, form.js, Login.css, loginPanel.css, LoginSaveFile.py (Other files not checked)
 - Mistake in addition of donation market templates, restarting...
-
+17/12/2017
+- Commented out old file upload widget code, will delete after checking new form
+- Event calendar page name set to json(.html)
+- json.html not integrated
+9/1/2018
+- Debug and "Donation Market" idea changed - New "Donation Projects" idea
+10/1/2018
+- Adding files and code for initial deployment with Heroku
+11/1/2018
+- Made a new branch for Heroku deployment
+- Changed folder structure and cleaned some codes
+13/1/2018
+- Added a favicon to the site
+16/1/2018
+- Set up new (proper) Firebase connections
