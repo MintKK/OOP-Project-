@@ -141,7 +141,7 @@ ul{
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#feedback">Feedback Form</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact Form</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#faq">FAQ Page</a>
@@ -166,11 +166,11 @@ ul{
     </header>
 
     <!-- Portfolio Grid Section -->
-    <section id="feedback">
-        <h2 class="text-center">FEEDBACK FORM</h2>
+    <section id="contact">
+        <h2 class="text-center">CONTACT FORM</h2>
         <hr class="star-primary">
             <div class="container">
-    <div class="wrapper animated bounceInLeft">
+    <div class="wrapper">
       <div class="company-info">
         <ul>
           <li><i class="road"></i>180 Ang Mo Kio Avenue 8, 569830</li>
@@ -180,34 +180,34 @@ ul{
       </div>
       <div class="contact">
         <h3>Email Us</h3>
-        <form>
+        <form id ="contactform" action="/ss" method="POST">
           <p>
             <label>Name</label>
               <label>
-                  <input type="text" name="name">
+                  <input type="text" name="name" id = "name">
               </label>
           </p>
 
           <p>
             <label>Email Address</label>
               <label>
-                  <input type="email" name="email">
+                  <input type="email" name="email" id = "email">
               </label>
           </p>
           <p>
             <label>Phone Number</label>
               <label>
-                  <input type="text" name="phone">
+                  <input type="text" name="phone" id = "phone">
               </label>
           </p>
           <p class="full">
             <label>Message</label>
               <label>
-                  <textarea name="message" rows="5"></textarea>
+                  <textarea name="message" id = "message" rows="5"></textarea>
               </label>
           </p>
           <p class="full">
-            <button>Submit</button>
+            <button type = "submit">Submit</button>
           </p>
         </form>
       </div>
@@ -282,6 +282,10 @@ ul{
         </div>
       </div>
     </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script src ="../static/contact.js"></script>
+
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top d-lg-none">
