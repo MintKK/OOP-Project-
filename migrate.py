@@ -20,6 +20,13 @@ class Organisations(sqldb.Model):
     address = sqldb.Column(sqldb.String())
     phone = sqldb.Column(sqldb.String())
 
+class Employees(sqldb.Model):
+    id = sqldb.Column(sqldb.Integer, primary_key = True)
+    name = sqldb.Column(sqldb.String())
+    email = sqldb.Column(sqldb.String())
+    position = sqldb.Column(sqldb.String())
+    phone = sqldb.Column(sqldb.String())
+
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 

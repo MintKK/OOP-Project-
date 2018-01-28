@@ -10,3 +10,10 @@ class Organisations(sqldb.Model):
     email = sqldb.Column(sqldb.String())
     address = sqldb.Column(sqldb.String())
     phone = sqldb.Column(sqldb.String())
+
+class Employees(sqldb.Model):
+    id = sqldb.Column(sqldb.Integer, primary_key = True)
+    name = sqldb.Column(sqldb.String())
+    email = sqldb.Column(sqldb.String())
+    position = sqldb.Column(sqldb.String())
+    phone = sqldb.Column(sqldb.String())

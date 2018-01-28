@@ -189,6 +189,44 @@ def edit_organisations(id):
 
     return redirect(url_for('organisations'))
 
+
+@app.route('/employees')
+def employees():
+    all_emp = Employees.query.all()
+    return render_template('employee.html', all_emp = all_emp)
+
+@app.route('/employees/add', methods=['GET', 'POST'])
+def add_employees():
+    if request.method == 'POST':
+        new_entry = Organisations(name=request.form['name'], email=request.form['email'], position=request.form['position'], \
+                                phone = request.form['phone'])
+        sqldb.session.add(new_entry)
+        sqldb.session.commit()
+        return redirect(url_for('employees'))
+    
+    return redirect(url_for('employees'))
+
+
+@app.route('/employees/delete/<id>', methods=['GET', 'POST'])
+def delete_employees(id):
+    selected_emp = Employees.query.filter_by(id=id).first()
+    sqldb.session.delete(selected_emp)
+    sqldb.session.commit()
+    return redirect(url_for('employees'))
+
+@app.route('/employees/edit/<id>', methods=['GET', 'POST'])
+def edit_employees(id):
+    selected_emp = Employees.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        selected_emp.name = request.form['name']
+        selected_emp.email = request.form['email']
+        selected_emp.position = request.form['position']
+        selected_emp.phone = request.form['phone']
+        sqldb.session.commit()
+        return redirect(url_for('employees'))
+
+    return redirect(url_for('employees'))
+
 # End code to execute
 if __name__ == '__main__':
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
