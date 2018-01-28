@@ -1,0 +1,57 @@
+{% extends "CommuHub_Layout.html" %}
+
+{% block additionalstyles %}
+    <!-- ShieldUI CSS and JS assets for unused file upload widget -->
+<!-- <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" /> -->
+<link href="{{ url_for("static", filename="css/Commuhub_custom.css") }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% from "includes/_formhelper.html" import render_field %}
+    <h1>New project</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            <label>Upload Image</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-default btn-file">
+                        Browse… <input type="file" id="imgInp">
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <img style="max-width: 30px;" src="" id='img-upload' />
+    </div>
+</div>
+ <!-- Image upload HTML
+<div class="container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" id="files" name="files" multiple="multiple" />
+            <p style="text-align: right; margin-top: 20px;">
+                <input type="submit" value="Upload Files" class="btn btn-lg btn-primary" />
+            </p>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+-->
+{% endblock %}
+
+{% block additionalscripts %}
+<!-- For unused file upload widget -->
+<!-- <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script> --->
+<!-- <script type="text/javascript">
+    jQuery(function ($) {
+        $("#files").shieldUpload();
+    });
+</script> -->
+
+<script src="{{ url_for("static", filename="js/imageUpload.js") }}"></script>
+{% endblock %}

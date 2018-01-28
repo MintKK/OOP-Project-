@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>Organisations Management</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -264,11 +264,11 @@ $(document).ready(function(){
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-						<h2>Manage <b>Employees</b></h2>
+						<h2>Manage <b>Organisations</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#addOrgModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Organisations</span></a>
+						<a href="#deleteOrgModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete Organisations</span></a>						
 					</div>
                 </div>
             </div>
@@ -302,19 +302,19 @@ $(document).ready(function(){
 						<td>{{a.address}}</td>
                         <td>{{a.phone}}</td>
                         <td>
-                            <a href="#editEmployeeModal{{a.id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal{{a.id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="#editOrgModal{{a.id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteOrgModal{{a.id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
 					</tr>
 				</tbody>
 
 		<!-- Edit Modal HTML -->
-		<div id="editEmployeeModal{{a.id}}" class="modal fade">
+		<div id="editOrgModal{{a.id}}" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<form action = "{{url_for('edit_organisations', id = a.id)}}" method='POST'>
 						<div class="modal-header">						
-							<h4 class="modal-title">Edit Employee</h4>
+							<h4 class="modal-title">Edit Organisations</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body">					
@@ -344,16 +344,16 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<!-- Delete Modal HTML -->
-		<div id="deleteEmployeeModal{{a.id}}" class="modal fade">
+		<div id="deleteOrgModal{{a.id}}" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<form action = "{{url_for('delete_organisations', id = a.id)}}" method='POST'>
 						<div class="modal-header">						
-							<h4 class="modal-title">Delete Employee</h4>
+							<h4 class="modal-title">Delete Organisations</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body">					
-							<p>Are you sure you want to delete these Records?</p>
+							<p>Are you sure you want to delete these Organisations?</p>
 							<p class="text-warning"><small>This action cannot be undone.</small></p>
 						</div>
 						<div class="modal-footer">
@@ -368,12 +368,12 @@ $(document).ready(function(){
 		{% endfor %}
 
 <!-- Edit Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
+<div id="addOrgModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form action = "{{url_for('add_organisations')}}" method='POST'>
 					<div class="modal-header">						
-						<h4 class="modal-title">Add Employee</h4>
+						<h4 class="modal-title">Add Organisations</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
