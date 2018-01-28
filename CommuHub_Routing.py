@@ -198,7 +198,7 @@ def employees():
 @app.route('/employees/add', methods=['GET', 'POST'])
 def add_employees():
     if request.method == 'POST':
-        new_entry = Organisations(name=request.form['name'], email=request.form['email'], position=request.form['position'], \
+        new_entry = Employees(name=request.form['name'], email=request.form['email'], position=request.form['position'], \
                                 phone = request.form['phone'])
         sqldb.session.add(new_entry)
         sqldb.session.commit()
