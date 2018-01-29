@@ -12,7 +12,7 @@ import calendar
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
+cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-5449d3e484.json")
 default_app = firebase_admin.initialize_app(
     cred,
     {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
@@ -208,5 +208,5 @@ def hello_user(username):
 # End code to execute
 if __name__ == '__main__':
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
-    app.run(port=80, debug=True)
+    app.run(debug=True)
     # app.run(debug=True)  optimisation

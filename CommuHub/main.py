@@ -18,5 +18,4 @@ def return_calendardata():
         return input_data.read()
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    app.run(debug = True)
