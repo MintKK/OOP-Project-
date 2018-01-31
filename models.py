@@ -24,6 +24,13 @@ class Employees(sqldb.Model):
     position = sqldb.Column(sqldb.String())
     phone = sqldb.Column(sqldb.String())
 
+class Events(sqldb.Model):
+    id = sqldb.Column(sqldb.Integer, primary_key = True)
+    name = sqldb.Column(sqldb.String())
+    organisations = sqldb.Column(sqldb.String())
+    things = sqldb.Column(sqldb.String())
+    date = sqldb.Column(sqldb.String())
+    website = sqldb.Column(sqldb.String())
 
 class User(UserMixin, sqldb.Model):
     id = sqldb.Column(sqldb.Integer, primary_key = True)
@@ -54,4 +61,4 @@ class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[InputRequired(), Email(message='Invalid Email'), Length(max=50)])
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
-
+    

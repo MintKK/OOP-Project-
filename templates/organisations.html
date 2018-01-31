@@ -320,19 +320,19 @@ $(document).ready(function(){
 						<div class="modal-body">					
 							<div class="form-group">
 								<label>Name</label>
-								<input type="text" name = 'name' class="form-control" required>
+								<input type="text" name = 'name' class="form-control" value="{{ a.name }}" required>
 							</div>
 							<div class="form-group">
 								<label>Email</label>
-								<input type="email" name ='email' class="form-control" required>
+								<input type="email" name ='email' class="form-control" value="{{ a.email }}" required>
 							</div>
 							<div class="form-group">
 								<label>Address</label>
-								<textarea class="form-control" name = 'address' required></textarea>
+								<textarea class="form-control" name = 'address' value="{{ a.address }}" required></textarea>
 							</div>
 							<div class="form-group">
 								<label>Phone</label>
-								<input type="text" name = 'phone' class="form-control" required>
+								<input type="text" name = 'phone' class="form-control" value="{{ a.phone }}" required>
 							</div>					
 						</div>
 						<div class="modal-footer">

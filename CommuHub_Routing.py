@@ -13,16 +13,16 @@ from models import *
 # Ahmad's calendar
 import calendar
 
-# import firebase_admin
-# from firebase_admin import credentials, db
+import firebase_admin
+from firebase_admin import credentials, db
 
-# cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
-# default_app = firebase_admin.initialize_app(
-#     cred,
-#     {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
-# )
+cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
+default_app = firebase_admin.initialize_app(
+    cred,
+    {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
+)
 
-# root = db.reference()
+root = db.reference()
 
 
 app = Flask(__name__)
@@ -41,8 +41,6 @@ app.config.update(
 	MAIL_PASSWORD = 'jonsnowisdead',
     MAIL_DEFAULT_SENDER = 'jonsnow3050@gmail.com'
 )
-
-#Login
 
 from flask_bootstrap import Bootstrap
 Bootstrap(app)
@@ -144,7 +142,7 @@ def return_calendardata():
 
 mail = Mail(app)
 @app.route('/Feedback/', methods=['GET', 'POST'])
-def index():
+def feedback():
     if request.method == 'POST':
         msg = Message(subject="Feedback",
                       recipients=['jonsnow3050@gmail.com'])
@@ -153,9 +151,23 @@ def index():
                                                                                       request.form['subject'],
                                                                                       request.form['message'])
         mail.send(msg)
-        return render_template('index.html')
+        return render_template('feedback.html')
 
-    return render_template('index.html')
+    return render_template('feedback.html')
+
+@app.route('/events_signup/', methods=['GET', 'POST'])
+def events_signup():
+    if request.method == 'POST':
+        eventssignup = Message(subject="events_signup",
+                      recipients=['jonsnow3050@gmail.com'])
+        eventssignup.html = 'From: {} ({}) <br> <br> Subject: {} <br> <br> Message: {}'.format(request.form['name'],
+                                                                                      request.form['event'],
+                                                                                      request.form['category'],
+                                                                                      request.form['explanation'])
+        mail.send(eventssignup)
+        return render_template('events_signup.html')
+
+    return render_template('events_signup.html')
 
 @app.route('/organisations')
 def organisations():
@@ -232,8 +244,43 @@ def edit_employees(id):
 
     return redirect(url_for('employees'))
 
+@app.route('/events')
+def events():
+    all_events = Events.query.all()
+    return render_template('events.html', all_events = all_events)
 
-#####COPY PASTE FROM HERE FOR LOGIN/SIGNUP
+@app.route('/events/add', methods=['GET', 'POST'])
+def add_events():
+    if request.method == 'POST':
+        new_entry = Events(name=request.form['name'], organisations=request.form['organisations'], things=request.form['things'], \
+                                date = request.form['date'], website=request.form['website'])
+        sqldb.session.add(new_entry)
+        sqldb.session.commit()
+        return redirect(url_for('events'))
+    
+    return redirect(url_for('events'))
+
+
+@app.route('/events/delete/<id>', methods=['GET', 'POST'])
+def delete_events(id):
+    selected_events = Events.query.filter_by(id=id).first()
+    sqldb.session.delete(selected_events)
+    sqldb.session.commit()
+    return redirect(url_for('events'))
+
+@app.route('/events/edit/<id>', methods=['GET', 'POST'])
+def edit_events(id):
+    selected_events = Events.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        selected_events.name = request.form['name']
+        selected_events.organisations = request.form['organisations']
+        selected_events.things = request.form['things']
+        selected_events.date = request.form['date']
+        selected_events.website = request.form['website']
+        sqldb.session.commit()
+        return redirect(url_for('events'))
+
+    return redirect(url_for('events'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -242,7 +289,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.check_password(form.password.data): #SHA256 hashed 50,000 times
                 login_user(user)
-                return redirect(url_for('index'))
+                return redirect(url_for('feedback'))
         else: 
             flash('Invalid username or password!')
             return redirect(url_for('login'))
@@ -254,7 +301,7 @@ def signup():
     form = RegisterForm()
 
     if current_user.is_authenticated == True:
-        return redirect(url_for('index'))
+        return redirect(url_for('feedback'))
 
     if form.validate_on_submit():
         new_user = User(username=form.username.data, email=form.email.data, password = form.password.data)
@@ -267,7 +314,7 @@ def signup():
             flash('Email or Username has already been taken!')
             return redirect(url_for('signup'))
 
-        return redirect(url_for('login'))
+        return redirect(url_for('feedback'))
 
     return render_template('signup.html', form = form)
 
@@ -275,11 +322,8 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('feedback'))
 
-##########
-### COPY THIS PART ALSO
-# End code to execute
 if __name__ == '__main__':
     login_manager = LoginManager()
     login_manager.init_app(app)
@@ -290,3 +334,4 @@ if __name__ == '__main__':
 
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
     app.run(debug=True)
+
