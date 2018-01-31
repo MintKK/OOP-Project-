@@ -1,0 +1,13 @@
+Donation Project data;
+title,
+creator,
+itemCategories,
+items,
+status,
+start_date,
+end_date,
+duration=None
+
+Only keys (in the database) for these data will be capitalized
+
+C prefix stands for category E.g. CClothes

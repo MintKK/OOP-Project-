@@ -1,0 +1,17 @@
+{% if form.errors %}
+    <div class="alert alert-danger" style="margin-top: 3%;">
+        <ul>
+            {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                {% for error in field_errors %}
+                    <li>{{ form[field_name].label }}: {{ error }}</li>
+                    <script>
+                        $('#{{ form[field_name].label }}').css({
+                            'background-color': '#ff2538'
+                        });
+                    </script>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
