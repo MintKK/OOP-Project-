@@ -13,16 +13,16 @@ from models import *
 # Ahmad's calendar
 import calendar
 
-import firebase_admin
-from firebase_admin import credentials, db
+# import firebase_admin
+# from firebase_admin import credentials, db
 
-cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
-default_app = firebase_admin.initialize_app(
-    cred,
-    {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
-)
+# cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
+# default_app = firebase_admin.initialize_app(
+#     cred,
+#     {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
+# )
 
-root = db.reference()
+# root = db.reference()
 
 
 app = Flask(__name__)
@@ -41,6 +41,11 @@ app.config.update(
 	MAIL_PASSWORD = 'jonsnowisdead',
     MAIL_DEFAULT_SENDER = 'jonsnow3050@gmail.com'
 )
+
+#Login
+
+from flask_bootstrap import Bootstrap
+Bootstrap(app)
 
 # The route for URL navigation to all pages
 @app.route('/')
@@ -227,7 +232,61 @@ def edit_employees(id):
 
     return redirect(url_for('employees'))
 
+
+#####COPY PASTE FROM HERE FOR LOGIN/SIGNUP
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is not None and user.check_password(form.password.data): #SHA256 hashed 50,000 times
+                login_user(user)
+                return redirect(url_for('index'))
+        else: 
+            flash('Invalid username or password!')
+            return redirect(url_for('login'))
+
+    return render_template('Login.html', form=form)
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = RegisterForm()
+
+    if current_user.is_authenticated == True:
+        return redirect(url_for('index'))
+
+    if form.validate_on_submit():
+        new_user = User(username=form.username.data, email=form.email.data, password = form.password.data)
+
+        try:
+            sqldb.session.add(new_user)
+            sqldb.session.commit()
+
+        except IntegrityError: #because of db's unique constraint
+            flash('Email or Username has already been taken!')
+            return redirect(url_for('signup'))
+
+        return redirect(url_for('login'))
+
+    return render_template('signup.html', form = form)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+##########
+### COPY THIS PART ALSO
 # End code to execute
 if __name__ == '__main__':
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
+
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
     app.run(debug=True)
