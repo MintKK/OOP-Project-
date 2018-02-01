@@ -1,0 +1,136 @@
+{% extends "CommuHub_Layout.html" %}
+
+{% block additionalstyles %}
+<style>
+input[type=text] {
+  border-bottom: 2px solid #4285f4;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+.form-group input {
+  font-size: 18px;
+  padding: 5px 0;
+}
+
+.form-group input:focus {
+  outline: 0;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+    margin-right: 7px;
+}
+</style>
+{% endblock %}
+
+{%  block body %}
+    {% from "includes/_formhelper.html" import render_field %}
+
+    <main class="container">
+    <div class="mainBody">
+
+    <h1>New Project</h1>
+{#    <script>#}
+{#        $(document).ready(function () {#}
+{#            $('#book').show();#}
+{#            $('#magazine').hide();#}
+{##}
+{#            $('input[type="radio"]').click(function () {#}
+{##}
+{#                if ($(this).attr('value') == 'sbook') {#}
+{#                    $('#book').show();#}
+{#                    $('#magazine').hide();#}
+{#                }#}
+{#                else {#}
+{#                    $('#magazine').show();#}
+{#                    $('#book').hide();#}
+{#                }#}
+{#            });#}
+{##}
+{#            var publicationType = $('input[name=pubtype]:checked').val();#}
+{##}
+{#            if (publicationType == 'sbook') {#}
+{#                $('#book').show();#}
+{#                $('#magazine').hide();#}
+{#            } else {#}
+{#                $('#magazine').show();#}
+{#                $('#book').hide();#}
+{#            }#}
+{#        });#}
+{#    </script>#}
+
+    {% include "includes/_formerror.html" %}
+
+    <form class="form-horizontal" method="POST" action="">
+
+{#        <div class="form-group">#}
+{#            <div class="form-row">#}
+{#                {{ render_field(form.pubtype, class_="radio-inline") }}#}
+{#            </div>#}
+{#        </div>#}
+
+        <div class="form-group">
+            {{ render_field(form.title, class_="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ render_field(form.creator, class_="form-control") }}
+        </div>
+
+
+        <div class="form-group">
+            {{ render_field(form.itemCategories) }}
+        </div>
+
+
+        <div id="items">
+            <div class="form-group">
+                    <div class="form-group text-center">
+                        {{ render_field(form.description, class_="form-control") }}
+                    </div>
+            </div>
+            <div class="form-group">
+                {{ render_field(form.items, class_="form-control") }}
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            {{ render_field(form.start_date, class_="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ render_field(form.end_date, class_="form-control") }}
+        </div>
+
+
+        <div class="form-group">
+            <div class="form-row">
+
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-info pull-right"/>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+    </div>
+    </main>
+{%  endblock %}
+
+

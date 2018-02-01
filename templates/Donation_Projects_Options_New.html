@@ -1,0 +1,249 @@
+{% extends "CommuHub_Layout.html" %}
+
+{% block additionalstyles %}
+<link rel="stylesheet" href="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.css" />
+<link rel="stylesheet" href="../static/css/multistep_form_custom.css" />
+<style>
+/* Error messages and labels */
+.error1{
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 0 transparent;
+  -webkit-box-shadow: 0 0 0 transparent;
+  box-shadow: 0 0 0 transparent;
+  /*position: absolute;
+  left: 525px;
+  margin-top: -58px;*/
+  padding: 0 10px;
+  height: 39px;
+  display: block;
+  color: #ffffff;
+  background: #e62163;
+  border: 0;
+  /*font: 14px Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;*/
+  line-height: 39px;
+  white-space: nowrap;
+
+}
+
+.error1:before{
+    width: 0;
+  height: 0;
+  left: -8px;
+  top: 14px;
+  content: '';
+  /*position: absolute;*/
+  border-top: 6px solid transparent;
+  border-right: 8px solid #e62163;
+  border-bottom: 6px solid transparent;
+}
+
+.error-log{
+  margin: 5px 5px 5px 0;
+  font-size: 19px;
+  position: relative;
+  bottom: -2px;
+}
+.fs-title {
+     line-height: 1;
+    font-size: 30px;
+    font-weight: bold;
+}
+.fs-subtitle {
+  font-weight: bold;
+  font-size: 20px;
+}
+</style>
+{% endblock %}
+
+{%  block additionalprescripts %}
+<script src="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script async>
+// Datepicker (For better form input date)
+jQuery( document ).ready(function( $ ) {
+    $("#start_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        minDate: new Date(),
+        maxDate: '+2y',
+        onSelect: function (date) {
+
+            var selectedDate = new Date(date);
+            var msecsInADay = 172800000;
+            var endDate = new Date(selectedDate.getTime() + msecsInADay);
+
+            //Set minimum date of end_date after selected date of start_date
+            $("#end_date").datepicker("option", "minDate", endDate);
+            $("#end_date").datepicker("option", "maxDate", '+2y');
+
+        }
+    });
+
+$("#end_date").datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true
+});
+});
+// Setting default value of start_date input to current date
+/*Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+$(document).ready( function() {
+    $('.datePicker').val(new Date().toDateInputValue());
+});​*/
+// Function to occur when date is picked, tried changing value for nothing - Failed too
+/*$("#start_date").datepicker({
+   onSelect: function(dateText, inst) {
+      var dateTime = new Date($("#start_date").datepicker("getDate"));
+      var strDateTime =  (dateTime.getDate() + "/" + (dateTime.getMonth()+1) + "/" + dateTime.getFullYear()).toString();
+      console.log(item.start_date);
+      // var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+      $("#start_date").datepicker().datepicker('setDate', item.start_date);
+   }
+});*/
+</script>
+{% endblock %}
+
+{%  block body %}
+{#    {% from "includes/_formhelper.html" import render_field %}#}
+
+    <div class="container">
+    <div id="modal-3" class="modal" data-modal-effect="slide-top">
+      <div class="modal-content">
+        <h2 class="fs-title">Contributing to the community</h2>
+        <p></p>
+        <input type="button" name="next" class="next action-button modal-close" value="Got it!">
+      </div>
+    </div>
+    </div>
+
+    <main class="mainBody">
+    <h1 class="text-center" >New Project</h1>
+
+{#    {% include "includes/_formerror.html" %}#}
+
+    <form id="example-advanced-form" class="form-horizontal container steps" method="post" action="{{ url_for("donationProjectsOptionsNew") }}" enctype="multipart/form-data" novalidate="">
+    <!-- Indicate the steps of the form: -->
+      <ul id="progressbar">
+        <li class="active"> </li>
+        <li> </li>
+        <li> </li>
+      </ul>
+
+    <fieldset>
+        <legend class="fs-title text-center">Part 1 of 3</legend>
+
+        <div class="form-group">
+            <label class="fs-subtitle" for="title">Title</label>
+            <input class="form-control" id="title" name="title" type="text" value="" placeholder="E.g. Elderly Christmas party funding" required data-rule-required = "true" data-msg-required = "Please enter your project title" />
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label class="fs-subtitle" for="creator">Creator name</label>
+            <input class="form-control" id="creator" name="creator" type="text" value="" data-rule-required="true" data-msg-required="Please enter your name" />
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span>
+        </div>
+
+
+        <div class="form-group">
+            <label class="fs-subtitle" for="errorinput">Define your donation categories (Select at least one)</label>
+            <input id="errorinput" name="errorinput" class="checkbox" style="visibility: hidden;" data-rule-require_from_group='[1,".checkbox"]' data-msg-require_from_group="Please select at least one category!" />
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span>
+            <ul>
+                <li>
+                    <input id="CMoney" name="CMoney" type="checkbox" class="checkbox" value="CMoney" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="CMoney">Money</label>
+                </li>
+                <li>
+                    <input id="CBooks" name="CBooks" type="checkbox" class="checkbox" value="CBooks" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="CBooks">Books and papers</label>
+                </li>
+                <li>
+                    <input id="CClothes" name="CClothes" type="checkbox" class="checkbox" value="CClothes" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="CClothes">Clothes</label>
+                </li>
+                <li>
+                    <input id="CFood" name="CFood" type="checkbox" class="checkbox" value="CFood" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="CFood">Food (Uncooked)</label>
+                </li>
+                <li>
+                    <input id="CAmenities" name="CAmenities" type="checkbox" class="checkbox" value="CAmenities" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="CAmenities">Other amenities</label>
+                </li>
+                <li>
+                    <input id="COthers" name="COthers" type="checkbox" class="checkbox" value="COthers" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="COthers">Other items</label>
+                </li>
+            </ul>
+        </div>
+
+        <input type="button" data-page="1" name="next" class="next action-button" value="Next" />
+    </fieldset>
+
+    <fieldset>
+        <legend class="fs-title text-center">Part 2 of 3</legend>
+
+        <div class="form-group">
+            <label class="fs-subtitle" for="description">General project description</label>
+            <textarea class="form-control" id="description" name="description" form="example-advanced-form" placeholder="Write your description here..." maxlength="300" data-rule-required="true" data-msg-required="Please enter a short description"></textarea>
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span>
+        </div>
+        <div id="items" class="form-group">
+            ...class="form-control"...
+        </div>
+
+        <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
+    </fieldset>
+
+
+    <fieldset>
+        <legend class="fs-title text-center">Part 3 of 3</legend>
+
+        <div class="form-group">
+            <label class="fs-subtitle" for="start_date">Project's starting date</label>
+            <input class="form-control" id="start_date" name="start_date" type="text" value="" data-rule-required="true" data-msg-required="Please enter the project's starting date" readonly />
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label class="fs-subtitle" for="end_date">Project's closing date</label>
+            <input class="form-control" id="end_date" name="end_date" type="text" value="" data-rule-required="true" data-msg-required="Please enter the project's ending date" readonly />
+            <span class="error1" style="display: none;">
+                <i class="error-log fa fa-exclamation-triangle"></i>
+            </span>
+        </div>
+
+    <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" />
+    <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
+    </fieldset>
+
+    <fieldset>
+        <h2 class="fs-title text-center">General details successfully submitted</h2>
+     </fieldset>
+    </form>
+
+    </main>
+{%  endblock %}
+
+{% block additionalscripts %}
+<script src='../static/js/jquery-validation/jquery.validate.min.js'></script>
+<script src='../static/js/jquery-validation/additional-methods.min.js'></script>
+<script src="../static/js/multistep_form.js"></script>
+<script>
+</script>
+{% endblock %}

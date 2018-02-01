@@ -1,5 +1,4 @@
-from wtforms import Form, StringField, PasswordField, RadioField, SelectField, ValidationError, FileField, SubmitField, TextAreaField, DateField, validators
-
+from wtforms import *
 class RequiredIf(object):
     def __init__(self, *args, **kwargs):
         self.conditions = kwargs
@@ -16,24 +15,20 @@ class RequiredIf(object):
                     validators.Optional().__call__(form, field)
 
 class NewProjectForm(Form):
-    title = StringField('Title', [validators.Length(min=1, max=150), validators.DataRequired()])
-    items = RadioField('Type Of Publication', choices=[('sbook', 'Book'), ('smag', 'Magazine')], default='sbook')
-    category = SelectField('Caterory', [validators.DataRequired()],
-                           choices=[('', 'Select'), ('FANTASY', 'Fantasy'), ('FASHION', 'Fashion'),
-                                    ('THRILLER', 'Thriller'), ('CRIME', 'Crime'), ('BUSINESS', 'Business')],
-                           default='')
-    publisher = StringField('Publisher', [validators.Length(min=1, max=100), validators.DataRequired()])
-    status = SelectField('status', [validators.DataRequired()], choices=[('', 'Select'), ('P', 'Pending'), ('A', 'Available For Borrowing'), ('R', 'Only For Reference')], default='')
-    isbn = StringField('ISBN No', [
-        validators.Length(min=1, max=100),
-        RequiredIf(pubtype='sbook')])
-    author = StringField('Author', [
-        validators.Length(min=1, max=100),
-        RequiredIf(pubtype='sbook')])
-    synopsis = TextAreaField('Synopsis', [
-        RequiredIf(pubtype='sbook')])
-    frequency = RadioField('Frequency', [RequiredIf(pubtype='smag')],
-                           choices=[('D', 'Daily'), ('W', 'Weekly'), ('M', 'Monthly')])
+    # Part 1
+    title = StringField('Title', [validators.Length(min=10, max=175), validators.DataRequired("Please enter a title")])
+    creator = StringField('Creator name', [validators.Length(min=1, max=100), validators.DataRequired("...")])
+    categories = [('CMoney', 'Money'), ('CBooks', 'Books'), ('CClothes', 'Clothes'), ('CFood', 'Food'), ('CAmenities', 'Household amenities'), ('COthers', 'Others')]
+    itemCategories = SelectMultipleField('Categories of items to be collected', [validators.DataRequired("Select at least one category")], choices=categories, default="")
+
+    # Part 2
+    description = TextAreaField("Project description", [validators.DataRequired("...")])
+    items = StringField('Items') #Hmmmm
+
+    # Part 3
+    #status = StringField('Status') #Should not be user input
+    start_date = StringField('Start date')
+    end_date = StringField('End date')
 
 
 

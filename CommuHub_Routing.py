@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import select
 from models import *
+from flask_bootstrap import Bootstrap
 
 # Ahmad's calendar
 import calendar
@@ -29,10 +30,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.db'
 sqldb.init_app(app)
 
-# Might need later
-# app.config.from_object()
-
-# Ahmad's config update - Currently used for email(?)
 app.config.update(
 	MAIL_SERVER='smtp.gmail.com',
 	MAIL_PORT= 465,
@@ -42,7 +39,6 @@ app.config.update(
     MAIL_DEFAULT_SENDER = 'jonsnow3050@gmail.com'
 )
 
-from flask_bootstrap import Bootstrap
 Bootstrap(app)
 
 # The route for URL navigation to all pages
@@ -58,78 +54,108 @@ def show_page(page=None):
         return page
 
 @app.route('/Donation_Projects_Main/')
-def donationMarketMain():
-    '''listings = root.child("listings").get()
-    listingslist = []
-    for listingId in listings:
-        eachListing = listings[listingId]
-        #print(listingId)
+def donationProjectsMain():
+    DProjects = root.child("DProjects").get()
+    projectsList = []
+    for p_id in DProjects:
+        eachProject = DProjects[p_id]
+        NewProject = DProject(eachProject['Title'],
+                             eachProject['Creator'],
+                             eachProject['Categories'],
+                             eachProject['Description'],
+                             eachProject['Items'],
+                             eachProject['Start date'],
+                             eachProject['End date'])
 
-        if eachListing:
-            pass'''
+        NewProject.set_p_id(p_id)
+        print(NewProject.get_p_id())
+        projectsList.append(NewProject)
 
-    return render_template("Donation_Projects_Main.html")
+    return render_template("Donation_Projects_Main.html", projects = projectsList)
 
 @app.route('/Donation_Projects_Options_test/', methods=['GET', 'POST'])
 def donationProjectsOptions():
     form = NewProjectForm(request.form)
-    # if request.method == 'POST' and form.validate():
-    #     if form.pubtype.data == 'smag':
-    #         title = form.title.data
-    #         type = form.pubtype.data
-    #         category = form.category.data
-    #         status = form.status.data
-    #         frequency = form.frequency.data
-    #         publisher = form.publisher.data
-    #         created_by = "U0001"  # hardcoded value
-    #
-    #         mag = Magazine(title, publisher, status, created_by, category, type, frequency)
-    #
-    #         mag_db = root.child('publications')
-    #         mag_db.push({
-    #             'title': mag.get_title(),
-    #             'type': mag.get_type(),
-    #             'category': mag.get_category(),
-    #             'status': mag.get_status(),
-    #             'frequency': mag.get_frequency(),
-    #             'publisher': mag.get_publisher(),
-    #             'created_by': mag.get_created_by(),
-    #             'create_date': mag.get_created_date()
-    #         })
-    #
-    #         flash('Magazine Inserted Sucessfully.', 'success')
-    #
-    #     elif form.pubtype.data == 'sbook':
-    #         title = form.title.data
-    #         type = form.pubtype.data
-    #         category = form.category.data
-    #         status = form.status.data
-    #         isbn = form.isbn.data
-    #         author = form.author.data
-    #         synopsis = form.synopsis.data
-    #         publisher = form.publisher.data
-    #         created_by = "U0001"  # hardcoded value
-    #
-    #         book = Book(title, publisher, status, created_by, category, type, synopsis, author, isbn)
-    #         book_db = root.child('publications')
-    #         book_db.push({
-    #             'title': book.get_title(),
-    #             'type': book.get_type(),
-    #             'category': book.get_category(),
-    #             'status': book.get_status(),
-    #             'author': book.get_author(),
-    #             'publisher': book.get_publisher(),
-    #             'isbn': book.get_isbnno(),
-    #             'synopsis': book.get_synopsis(),
-    #             'created_by': book.get_created_by(),
-    #             'create_date': book.get_created_date()
-    #         })
-    #
-    #         flash('Book Inserted Sucessfully.', 'success')
-    #
-    #     return redirect(url_for('viewpublications'))
+    if request.method == 'POST' and form.validate():
+        title = form.title.data
+        creator = form.creator.data
+        itemCategories = form.itemCategories.data
+        description = form.description.data
+        items = form.items.data
+        start_date = form.start_date.data
+        end_date = form.end_date.data
+        # frequency = form.frequency.data
+        # publisher = form.publisher.data
+        # created_by = "U0001"  # hardcoded value
+
+        project = DProject(title, creator, itemCategories, description, items, start_date, end_date)
+
+        projects_db = root.child('DProjects')
+        projects_db.push({
+            'ID': "Test",
+            'Title': project.get_title(),
+            'Creator': project.get_creator(),
+            'Categories': project.get_categories(),
+            'Status': project.get_description(),
+            'Items': project.get_items(),
+            'Start date': project.get_start_date(),
+            'End date': project.get_end_date(),
+        })
+
+        flash('Project added.', 'success')
+
+        return render_template("Donation_Projects_Main.html")
+        #return redirect(url_for('viewpublications'))
 
     return render_template("Donation_Projects_Options_test.html", form=form)
+    #else ?
+    # return render_template("Donation_Projects_Options_test.html", form=form)
+
+@app.route('/Donation_Projects_Options_New/', methods=['GET','POST'])
+def donationProjectsOptionsNew():
+    if request.method == 'GET':
+        return render_template("Donation_Projects_Options_New.html", form=form)
+    elif request.method == 'POST': #and form.validate():
+        title = request.form['title']
+        print(title)
+        creator = request.form['creator']
+        print(creator)
+        itemCategories = []
+        allItemCategories = ("CMoney", "CBooks", "CClothes", "CFood", "CAmenities", "COthers")
+        for category in allItemCategories:
+            if request.form.get(category) is not None:
+                print(request.form[category])
+                itemCategories.append(category)
+        print(itemCategories)
+        description = request.form['description']
+        print(description)
+        #items = form.items.data
+        start_date = request.form['start_date']
+        print(start_date)
+        end_date = request.form['end_date']
+        print(end_date)
+        # frequency = form.frequency.data
+        # publisher = form.publisher.data
+        # created_by = "U0001"  # hardcoded value
+
+        project = DProject(title, creator, itemCategories, description, "Items placeholder", start_date, end_date)
+
+        projects_db = root.child('DProjects')
+        projects_db.push({
+            'ID': "Test",
+            'Title': project.get_title(),
+            'Creator': project.get_creator(),
+            'Categories': project.get_categories(),
+            'Description': project.get_description(),
+            'Items': project.get_items(),
+            'Start date': project.get_start_date(),
+            'End date': project.get_end_date(),
+        })
+
+
+        #flash('Project added.', 'success')
+
+        return render_template("Donation_Projects_Main.html")
 
 @app.route('/calendardata/')
 def return_calendardata():
@@ -333,5 +359,7 @@ if __name__ == '__main__':
         return User.query.get(int(id))
 
     app.secret_key = "e7AdCq7iwNN0RO9YixqraD6l4TuiwCyZh0yd9Yfp"
-    app.run(debug=True)
+    app.run(port=80, debug=True)
+
+
 

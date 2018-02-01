@@ -6,3 +6,69 @@ box-sizing property : border-box property
 
 From "Connecting Firebase to a contact form" video;
 HTML submit button will try to send to HTML page by default, to prevent this use <event>.preventDefault() method in the fired function upon button click.
+
+Generating requirements file terminal command: pip freeze > requirements.txt
+
+Firebase database .set() method will override existing JSON table indicated as child if the name is the same
+Firebase database .update() method will create new entries in the JSON table indicated as child if the entered data is new
+
+Must map Python files, functions to proper URLs.
+
+PyCharm Flask project, HTML files go into "templates" folder. CSS, JavaScript and other resources in "static" folder
+
+Can and should put all decorators into one Flask fie...master skeleton file...
+Decorators --> Routing
+
+Internal server error mostly due to Python code error. "Exception at {}" shows routing error at the {} route.
+
+Routes are case sensitive.
+All routes should end with '/' as browser will interpret the route the same with or without '/' at the end in the URL.
+
+Need some Python plugins to use HTTP post method.
+
+Passing in values from Python to HTML...
+Note can use conditional flow and looping in HTML...
+
+Extra: Remember Python takes last return keyword in the function and ignores the earlier ones.
+       App route's function must have a return value, return to the route...
+
+Basics;
+
+@app.routes must be unique, an extended URL with same starting prefix. E.g. "/login/" and "/login/<username>/" are the same and will conflict, have error.
+Function names for URL routes must also be unique.
+
+Check out: Pyrebase
+
+# Should import all needed modules with one statement
+# For HTTP get and post methods
+from flask import request
+# For HTML file (template) importing(?)
+from flask import render_template
+
+Templating with Jinja2 in Flask:
+
+For partial html files, we will prefix with a '_' at the start of the name to indicate that is a partial file. '_navbar.html' will be the navigation menu bar for the web application.
+The base template contains basic structural things that should never change, e.g. <html>, <head>, <body> tags. It also includes the stylesheets / scripts that will be served on every page.
+Most importantly, the base template is responsible for defining blocks where child templates can override.
+
+E.g. Jinja2 syntax;
+{% … %} : Statements like for-loops, if/else statements, and calling Python functions
+{{ … }} : Printing out data
+{# … #} : Comments
+
+To access the firebase database for creating, updating, deleting and retrieving of the data, you will need a Service Account.
+
+The contents of this service account should be kept private. If you use public source control, eg: github, where your repository is not set to private, remember to exclude this particular json file.
+
+The secret key is essential for the CRUD operation to perform successfully. As we will be passing data from one request to another, thus we will need a secret key.
+
+Can encrypt data with Flask built-in hashing functions
+
+In addition to the request object there is also a second object called session which allows you to store information specific to a user from one request to the next. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing.
+
+******Pending: Positioning elements so navbar doesn't overlap top elements
+               Consider adding a duration input in new project form that will auto set end_date
+               Consider using hero section on homepage (As seen on Lynda tutorial)
+               Use a "pending" system for donations to be confirmed and progress updated
+
+               If time allows, use accurate time from online --> Not computer's clock

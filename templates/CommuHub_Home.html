@@ -8,25 +8,25 @@
 <header class="masthead">
   <div class="container">
 
-    <div style="margin-bottom: 2%; margin-top: 50px; font-size: 150%">
-      <main class="hero-section">
-        <div class="container">
-
-          <div class="section-content">
-            <h2>Discover places near you.</h2>
-            <a href="#" class="btn-primary">Sign up</a>
-            <a href="{{ url_for("show_page", page="CommuHub_Home") }}" class="btn-secondary">Learn more</a>
-          </div>
-
-          <div class="section-device">
-            <img src="static/img/device.png">
-          </div>
-
-          <div class="clearfix"></div>
-
-        </div>
-      </main>
-    </div>
+{#    <div style="margin-bottom: 2%; margin-top: 50px; font-size: 150%">#}
+{#      <main class="hero-section">#}
+{#        <div class="container">#}
+{##}
+{#          <div class="section-content">#}
+{#            <h2>Discover places near you.</h2>#}
+{#            <a href="#" class="btn-primary">Sign up</a>#}
+{#            <a href="{{ url_for("show_page", page="CommuHub_Home") }}" class="btn-secondary">Learn more</a>#}
+{#          </div>#}
+{##}
+{#          <div class="section-device">#}
+{#            <img src="static/img/device.png">#}
+{#          </div>#}
+{##}
+{#          <div class="clearfix"></div>#}
+{##}
+{#        </div>#}
+{#      </main>#}
+{#    </div>#}
 
     <div style="margin-bottom: 2%; margin-top: 50px; font-size: 200%">
         <b>Pick a service</b>
@@ -67,6 +67,10 @@
 
   </div>
 </header>
+{% endblock %}
+
+{% block scrolltop %}
+{% include "includes/_scrolltop.html" %}
 {% endblock %}
 
 {% block additionalscripts %}
