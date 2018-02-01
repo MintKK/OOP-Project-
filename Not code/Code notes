@@ -67,8 +67,7 @@ Can encrypt data with Flask built-in hashing functions
 In addition to the request object there is also a second object called session which allows you to store information specific to a user from one request to the next. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing.
 
 ******Pending: Positioning elements so navbar doesn't overlap top elements
-               Using jQuery steps and jQuery validation on form
-               Rewriting and designing form with normal HTML according to initial WTForm standard
+               Consider adding a duration input in new project form that will auto set end_date
                Consider using hero section on homepage (As seen on Lynda tutorial)
                Use a "pending" system for donations to be confirmed and progress updated
 

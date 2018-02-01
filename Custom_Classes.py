@@ -43,9 +43,18 @@ class DProject:
     def get_end_date(self):
         return self.__end_date
 
+    def get_duration(self):
+        return self.__duration
+
+    def get_status(self):
+        return self.__status
+
     # Testing
     def print_date(self):
         print(datetime.datetime.now())
+
+    def set_p_id(self, p_id):
+        self.__p_id = p_id
 
     def set_title(self, title):
         self.__title = title
@@ -56,11 +65,20 @@ class DProject:
     def set_categories(self, itemCategories):
         self.__categories = itemCategories
 
-    def set_duration(self, duration):
-        self.__duration = duration
+    def set_description(self, description):
+        self.__description = description
+
+    def set_items(self, items):
+        self.__items = items
+
+    def set_start_date(self, start_date):
+        self.__start_date = start_date
 
     def set_end_date(self, end_date):
         self.__end_date = end_date
+
+    def set_duration(self, duration):
+        self.__duration = duration
 
     def set_status(self, status):
         self.__status = status

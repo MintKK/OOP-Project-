@@ -1,7 +1,7 @@
 {% extends "CommuHub_Layout.html" %}
 
 {% block additionalstyles %}
-<link rel="stylesheet" href="../static/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.css" />
 <link rel="stylesheet" href="../static/css/multistep_form_custom.css" />
 <style>
 /* Error messages and labels */
@@ -58,7 +58,7 @@
 {% endblock %}
 
 {%  block additionalprescripts %}
-<script src="../static/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script src="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <script async>
 // Datepicker (For better form input date)
 jQuery( document ).ready(function( $ ) {
@@ -161,27 +161,27 @@ $(document).ready( function() {
             </span>
             <ul>
                 <li>
-                    <input id="CMoney" name="category" type="checkbox" class="checkbox" value="CMoney" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CMoney" name="CMoney" type="checkbox" class="checkbox" value="CMoney" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CMoney">Money</label>
                 </li>
                 <li>
-                    <input id="CBooks" name="category" type="checkbox" class="checkbox" value="CBooks" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CBooks" name="CBooks" type="checkbox" class="checkbox" value="CBooks" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CBooks">Books and papers</label>
                 </li>
                 <li>
-                    <input id="CClothes" name="category" type="checkbox" class="checkbox" value="CClothes" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CClothes" name="CClothes" type="checkbox" class="checkbox" value="CClothes" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CClothes">Clothes</label>
                 </li>
                 <li>
-                    <input id="CFood" name="category" type="checkbox" class="checkbox" value="CFood" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CFood" name="CFood" type="checkbox" class="checkbox" value="CFood" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CFood">Food (Uncooked)</label>
                 </li>
                 <li>
-                    <input id="CAmenities" name="category" type="checkbox" class="checkbox" value="CAmenities" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CAmenities" name="CAmenities" type="checkbox" class="checkbox" value="CAmenities" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CAmenities">Other amenities</label>
                 </li>
                 <li>
-                    <input id="COthers" name="category" type="checkbox" class="checkbox" value="COthers" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="COthers" name="COthers" type="checkbox" class="checkbox" value="COthers" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="COthers">Other items</label>
                 </li>
             </ul>

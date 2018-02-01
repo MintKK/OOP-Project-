@@ -2,10 +2,15 @@ from flask import *
 from flask_mail import Mail, Message
 from jinja2 import Template
 import json
-from CommuHub_Forms import *
 from Custom_Classes import *
+from CommuHub_Forms import *
 import Time_Functions as timeFunctions
 from datetime import *
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql import select
+#from models import *
+from flask_bootstrap import Bootstrap
 
 # Ahmad's calendar
 import calendar
@@ -33,6 +38,8 @@ root = db.reference()
 
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.db'
+# sqldb.init_app(app)
 
 # Might need later
 # app.config.from_object()
@@ -46,6 +53,7 @@ app.config.update(
 	MAIL_PASSWORD = 'jonsnowisdead',
     MAIL_DEFAULT_SENDER = 'jonsnow3050@gmail.com'
 )
+Bootstrap(app)
 
 # The route for URL navigation to all pages
 @app.route('/')
@@ -60,17 +68,24 @@ def show_page(page=None):
         return page
 
 @app.route('/Donation_Projects_Main/')
-def donationMarketMain():
-    '''listings = root.child("listings").get()
-    listingslist = []
-    for listingId in listings:
-        eachListing = listings[listingId]
-        #print(listingId)
+def donationProjectsMain():
+    DProjects = root.child("DProjects").get()
+    projectsList = []
+    for p_id in DProjects:
+        eachProject = DProjects[p_id]
+        NewProject = DProject(eachProject['Title'],
+                             eachProject['Creator'],
+                             eachProject['Categories'],
+                             eachProject['Description'],
+                             eachProject['Items'],
+                             eachProject['Start date'],
+                             eachProject['End date'])
 
-        if eachListing:
-            pass'''
+        NewProject.set_p_id(p_id)
+        print(NewProject.get_p_id())
+        projectsList.append(NewProject)
 
-    return render_template("Donation_Projects_Main.html")
+    return render_template("Donation_Projects_Main.html", projects = projectsList)
 
 @app.route('/Donation_Projects_Options_test/', methods=['GET', 'POST'])
 def donationProjectsOptions():
@@ -137,7 +152,7 @@ def donationProjectsOptionsNew():
         # publisher = form.publisher.data
         # created_by = "U0001"  # hardcoded value
 
-        project = DProject(title, creator, itemCategories, description, " ", start_date, end_date)
+        project = DProject(title, creator, itemCategories, description, "Items placeholder", start_date, end_date)
 
         projects_db = root.child('DProjects')
         projects_db.push({
@@ -150,6 +165,7 @@ def donationProjectsOptionsNew():
             'Start date': project.get_start_date(),
             'End date': project.get_end_date(),
         })
+
 
         #flash('Project added.', 'success')
 
