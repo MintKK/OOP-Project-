@@ -63,7 +63,7 @@ body {
 
 
 /*headings*/
-/*.fs-title {
+.fs-title {
    text-transform: uppercase;
      margin: 0 0 5px;
      line-height: 1;
@@ -78,7 +78,7 @@ body {
   color: #837E7E;
   margin-bottom: 20px;
   text-align: center;
-}*/
+}
 /*progressbar*/
 
 

@@ -74,9 +74,10 @@ display: block;
   width: 20px;
   line-height: 20px;
   display: block;
-  font-size: 30px;
+  font-size: 20px;
   color: #333;
   background: white;
+  border-color: black;
   border-radius: 3px;
   margin: 0 auto 5px auto;
 }
@@ -108,47 +109,6 @@ display: block;
   font-family: sans-serif;
   color: #3C3B3B;
   line-height: 21px;
-}
-
-.error1{
-   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0 0 0 transparent;
-  -webkit-box-shadow: 0 0 0 transparent;
-  box-shadow: 0 0 0 transparent;
-  position: absolute;
-  left: 525px;
-  margin-top: -58px;
-  padding: 0 10px;
-  height: 39px;
-  display: block;
-  color: #ffffff;
-  background: #e62163;
-  border: 0;
-  font: 14px Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
-  line-height: 39px;
-  white-space: nowrap;
-
-}
-
-.error1:before{
-    width: 0;
-  height: 0;
-  left: -8px;
-  top: 14px;
-  content: '';
-  position: absolute;
-  border-top: 6px solid transparent;
-  border-right: 8px solid #e62163;
-  border-bottom: 6px solid transparent;
-}
-
-.error-log{
-    margin: 5px 5px 5px 0;
-  font-size: 19px;
-  position: relative;
-  bottom: -2px;
 }
 
 .question-log {
@@ -252,14 +212,14 @@ display: block;
   left: 14px;
   top: -14px;
   content: '';
-  position: absolute;
+  /*position: absolute;*/
   border-left: 6px solid transparent;
   border-bottom: 8px solid #e62163;
   border-right: 6px solid transparent;
   }
 
 /*show hidden fieldsets */
-.steps fieldset:not(:first-of-type) {
+/*.steps fieldset:not(:first-of-type) {
   display: block;
 }
 
@@ -282,7 +242,7 @@ display: block;
   float: right;
   margin: 28px auto 10px;
   width: 100% !important;
-}
+}*/
 
 }
 /* Custom styling */
