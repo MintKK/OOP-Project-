@@ -146,6 +146,9 @@ ul{
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#faq">FAQ Page</a>
             </li>
+              <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#map">locate us</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -165,7 +168,7 @@ ul{
       </div>
     </header>
 
-    <!-- Portfolio Grid Section -->
+    <!-- Form Section -->
     <section id="contact">
         <h2 class="text-center">CONTACT FORM</h2>
         <hr class="star-primary">
@@ -180,7 +183,7 @@ ul{
       </div>
       <div class="contact">
         <h3>Email Us</h3>
-        <form id ="contactform" action="/ss" method="POST">
+        <form id ="contactform"  method="post">
           <p>
             <label>Name</label>
               <label>
@@ -207,7 +210,8 @@ ul{
               </label>
           </p>
           <p class="full">
-            <button type = "submit">Submit</button>
+            <button type = "submit" id="submitBtn">Submit</button>
+
           </p>
         </form>
       </div>
@@ -221,12 +225,34 @@ ul{
         <h2 class="text-center">faq</h2>
         <hr class="star-light">
         <div align = 'center'>
-
+            <h4>have questions? head on to our faq page!</h4>
+            <br>
+            <br>
             <a href="FAQ.html" class = 'button'>Click here for FAQ page</a>
 
         </div>
       </div>
     </section>
+
+    <!--map section-->
+    <section id="map">
+        <h2 class="text-center">LOCATE US</h2>
+        <hr class="star-primary">
+            <div class="container">
+      <div class="company-info">
+          <h3> block L, school of information technology, Nanyang Polytechnic  </h3>
+          <br>
+          <div style="width: 100%">
+              <iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=1.3801179,103.84902209999996&amp;q=180%20ang%20mo%20kio%20avenue%208+(Nanyang%20Polytechnic)&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                  <a href="https://www.maps.ie/create-google-map/">Add map to website</a>
+              </iframe>
+          </div>
+        <br>
+
+    </div>
+    </div>
+    </section>
+
 
 
     <!-- Footer -->
@@ -276,7 +302,7 @@ ul{
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              Copyright &copy; Your Website 2017
+              Copyright &copy; Commuhub 2017
             </div>
           </div>
         </div>
@@ -284,7 +310,6 @@ ul{
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-    <script src ="../static/contact.js"></script>
 
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
@@ -307,6 +332,7 @@ ul{
 
     <!-- Custom scripts for this template -->
     <script src="../static/js/freelancer.min.js"></script>
+    <script src="{{ url_for('static',filename='js/support_system.js')}}"></script>
 
   </body>
 
