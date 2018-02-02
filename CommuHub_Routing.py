@@ -12,10 +12,12 @@ from sqlalchemy.sql import select
 #from models import *
 from flask_bootstrap import Bootstrap
 
+
 # Ahmad's calendar
 import calendar
+from entities import *
 
-import firebase_admin
+import firebase_admin, os
 from firebase_admin import credentials, db
 
 cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
@@ -179,6 +181,34 @@ def return_calendardata():
     with open("events.json", "r") as input_data:
         return input_data.read()
 
+
+def add_contact(name, email, phone, message):
+    root = db.reference('/contact')
+    dict = {'name':name, 'email':email, 'phone':phone, 'message':message}
+    root.push(dict)
+
+@app.route('/ss/', methods=['GET', 'POST'])
+def support_system():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        message = request.form['message']
+        add_contact(name, email, phone, message)
+        return redirect(url_for('m_d'))              #redirects the user to another page
+    return render_template('Support_System.html')
+        #return render_template('messagedetails.html')
+
+
+@app.route('/md', methods=['GET', 'POST'])
+def m_d():
+    ref = db.reference('contact')
+    users = ref.get()
+    return render_template('messagedetails.html',users=users)
+
+@app.route('/faq')
+def faq():
+    return render_template('FAQ.html')
 
 mail = Mail(app)
 @app.route('/Feedback/', methods=['GET', 'POST'])

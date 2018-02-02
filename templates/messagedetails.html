@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+{% block addionalstyles %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+}
+        table {
+            border-spacing: 5px;
+            width: 60%
+}
+        th, td {
+    padding: 15px;
+}
+    </style>
+{% endblock %}
+
+{% block additionalprescripts %}
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h2 align = "center">Your details are as follows:</h2>
+<table align = "center">
+
+
+        <tr>
+        <th>Name:</th>
+        <td id="name"></td>
+        </tr>
+
+        <tr>
+        <th>Email Address:</th>
+        <td id="email"></td>
+        </tr>
+
+        <tr>
+        <th>Contact Number:</th>
+        <td id="phone"></td>
+        </tr>
+
+        <tr>
+        <th>Message:</th>
+        <td id="message"></td>
+        </tr>
+</table>
+</div>
+<br>
+<br>
+
+<div align = "center">
+<img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMUaqaUowocAgL9IjesoAJloINuJ7eH0F6MiWnvQo4z7ygk1qX">
+</div>
+
+<div align="center">
+<a href="http://127.0.0.1:5000/ss" ><h1>Back To The Support System</h1></a>
+</div>
+{% endblock %}
+
+{% block additionalsscripts %}
+<script src="{{ url_for('static',filename='js/messageDetails.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+{% endblock %}
