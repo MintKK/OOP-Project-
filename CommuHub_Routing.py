@@ -15,7 +15,6 @@ from flask_bootstrap import Bootstrap
 
 # Ahmad's calendar
 import calendar
-from entities import *
 
 import firebase_admin, os
 from firebase_admin import credentials, db
@@ -23,8 +22,9 @@ from firebase_admin import credentials, db
 cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
 default_app = firebase_admin.initialize_app(
     cred,
-    {"databaseURL": 'https://commuhub-2017.firebaseio.com/'}
-)
+    {'databaseURL': 'https://commuhub-2017.firebaseio.com/',
+     'storageBucket': 'gs://commuhub-2017.appspot.com/'
+     })
 
 root = db.reference()
 
@@ -200,13 +200,13 @@ def support_system():
         #return render_template('messagedetails.html')
 
 
-@app.route('/md', methods=['GET', 'POST'])
+@app.route('/md/', methods=['GET', 'POST'])
 def m_d():
     ref = db.reference('contact')
     users = ref.get()
     return render_template('messagedetails.html',users=users)
 
-@app.route('/faq')
+@app.route('/faq/')
 def faq():
     return render_template('FAQ.html')
 

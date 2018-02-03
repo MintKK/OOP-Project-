@@ -18,8 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- Plugin CSS -->
-    <link href="../static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/vendor/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <link rel="stylesheet" href="../static/css/animate.min.css" >
 
     <!-- Custom css for this template -->
     <link href="../static/css/freelancer.min.css" rel="stylesheet">
@@ -87,6 +88,21 @@
 
     {% block modals %}{% endblock %}
 
+    <!-- Firebase JS connection, may not be needed -->
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyB-GRQBAeRWDpCrNM1TwBarLnIYaXkEjrk",
+        authDomain: "commuhub-2017.firebaseapp.com",
+        databaseURL: "https://commuhub-2017.firebaseio.com",
+        projectId: "commuhub-2017",
+        storageBucket: "commuhub-2017.appspot.com",
+        messagingSenderId: "918109022832"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../static/vendor/tether/tether.min.js"></script>
@@ -96,6 +112,9 @@
     <script src="../static/vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="../static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+    <script src="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="../static/js/isotope.pkgd.min.js"></script>
+    <script src="../static/js/wow.min.js"></script>
 
     <!-- Contact Form JavaScript -->
     <script src="../static/js/jqBootstrapValidation.js"></script>
