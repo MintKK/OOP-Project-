@@ -53,29 +53,6 @@
 <body id="page-top">
 
     {% include 'includes/_navbar.html' %}
-    <!-- Chester first login form -->
-    <div id="login" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form id="form1" name="form1" onsubmit="details()">
-                        <div class="form-group">
-
-                            <label for="name" class="col-2 col-form-label">Name</label><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-                            <div class="col-10"><input type="text" class="form-control" id="name" value="" name="name" pattern="([a-zA-Z_ ]{1,40})$" required></div>
-                            <label for="password" class="col-2 col-form-label">Password</label>
-                            <div class="col-10"><input class="form-control" type="password" pattern="^(?=.*[a-z])[A-Za-z0-9\d=!\-@._*]+$" oninvalid="" id="password" value="" name="password" required></div>
-                        </div>
-
-                         <button type="submit" class="btn btn-success pull-left">Login</button>
-                       	 <button class="btn btn-info pull-right" data-dismiss="modal" aria-hidden="true">back</button>
-                        <br>
-                        <br>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- NEED TO ADJUST POSITION AND STYLING -->
     {% include 'includes/_message.html' %}
@@ -88,20 +65,20 @@
 
     {% block modals %}{% endblock %}
 
-    <!-- Firebase JS connection, may not be needed -->
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyB-GRQBAeRWDpCrNM1TwBarLnIYaXkEjrk",
-        authDomain: "commuhub-2017.firebaseapp.com",
-        databaseURL: "https://commuhub-2017.firebaseio.com",
-        projectId: "commuhub-2017",
-        storageBucket: "commuhub-2017.appspot.com",
-        messagingSenderId: "918109022832"
-      };
-      firebase.initializeApp(config);
-    </script>
+{#    <!-- Firebase JS connection, may not need -->#}
+{#    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>#}
+{#    <script>#}
+{#      // Initialize Firebase#}
+{#      var config = {#}
+{#        apiKey: "AIzaSyB-GRQBAeRWDpCrNM1TwBarLnIYaXkEjrk",#}
+{#        authDomain: "commuhub-2017.firebaseapp.com",#}
+{#        databaseURL: "https://commuhub-2017.firebaseio.com",#}
+{#        projectId: "commuhub-2017",#}
+{#        storageBucket: "commuhub-2017.appspot.com",#}
+{#        messagingSenderId: "918109022832"#}
+{#      };#}
+{#      firebase.initializeApp(config);#}
+{#    </script>#}
 
     <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -112,7 +89,6 @@
     <script src="../static/vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="../static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-    <script src="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="../static/js/isotope.pkgd.min.js"></script>
     <script src="../static/js/wow.min.js"></script>
 
@@ -133,9 +109,6 @@
         $('[data-toggle="popover"]').popover();
     });
     </script>
-
-    <!-- Chester's Temporary JS file -->
-    <script src="../static/js/Login.js"></script>
 
 </body>
 </html>
