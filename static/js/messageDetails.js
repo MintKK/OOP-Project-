@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#name").html(localStorage.getItem('name'));      // get item from local storage
+    $("#name2").html(localStorage.getItem('name2'));      // get item from local storage
     $("#email").html(localStorage.getItem('email'));
     $("#phone").html(localStorage.getItem('phone'));
     $("#message").html(localStorage.getItem('message'));

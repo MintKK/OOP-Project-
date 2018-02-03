@@ -37,8 +37,8 @@ root = db.reference()
 
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.db'
-sqldb.init_app(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.db'
+# sqldb.init_app(app)
 
 # Might need later
 # app.config.from_object()
@@ -62,10 +62,10 @@ def show_page(page=None):
     # print(page)  To test for page
     if page == "CommuHub_Home" or not page:  # Just the base host URL (no page value set) or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
-    # elif page != "favicon.ico":  # Called with a argument for page, that's not homepage or favicon
-    #     return render_template("{}.html".format(page))
-    # else:  # For favicon request
-    #     return page
+    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage or favicon
+        return render_template("{}.html".format(page))
+    else:  # For favicon request
+        return page
 
 @app.route('/Donation_Projects_Main/')
 def donationProjectsMain():
