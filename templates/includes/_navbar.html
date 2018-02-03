@@ -23,19 +23,11 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{{ url_for("show_page", page="Donation_Projects_Options_New") }}">Donation Projects test</a>
             </li>
+
+          
           </ul>
 
-            <ul class="nav navbar-nav navbar-right">
 
-                {% if session.logged_in %}
-                    <li><a href="/logout">Logout</a></li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" data-toggle="modal" title="Login" href="#login">Login</a>
-                    </li>
-                {% endif %}
-
-            </ul>
         </div>
       </div>
     </nav>

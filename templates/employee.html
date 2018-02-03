@@ -269,6 +269,13 @@ $(document).ready(function(){
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete Employee</span></a>						
+						{% if current_user.is_authenticated %}						
+						<a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a></li>
+						<a class="btn btn-success" href="#">{{ current_user.username }}</a></li>			
+						{% else %}						
+						<a class="btn btn-success" href="{{ url_for('login') }}">Login</a></li>
+						<a class="btn btn-success" href="{{ url_for('signup') }}">Sign Up</a></li>
+						{% endif %}	
 					</div>
                 </div>
             </div>

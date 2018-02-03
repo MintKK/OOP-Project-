@@ -315,7 +315,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.check_password(form.password.data): #SHA256 hashed 50,000 times
                 login_user(user)
-                return redirect(url_for('feedback'))
+                return redirect(url_for('employees'))
         else: 
             flash('Invalid username or password!')
             return redirect(url_for('login'))
@@ -327,7 +327,7 @@ def signup():
     form = RegisterForm()
 
     if current_user.is_authenticated == True:
-        return redirect(url_for('feedback'))
+        return redirect(url_for('employees'))
 
     if form.validate_on_submit():
         new_user = User(username=form.username.data, email=form.email.data, password = form.password.data)
@@ -340,7 +340,7 @@ def signup():
             flash('Email or Username has already been taken!')
             return redirect(url_for('signup'))
 
-        return redirect(url_for('feedback'))
+        return redirect(url_for('employees'))
 
     return render_template('signup.html', form = form)
 
@@ -348,7 +348,7 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('feedback'))
+    return redirect(url_for('employees'))
 
 if __name__ == '__main__':
     login_manager = LoginManager()

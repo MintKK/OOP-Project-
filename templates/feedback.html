@@ -44,15 +44,8 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Feedback</a>
             </li>
 
-            {% if current_user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">{{ current_user.username }}</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('logout') }}">Logout</a></li>
-
-            {% else %}
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('signup') }}">Sign Up</a></li>
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('login') }}">Login</a></li>
-            {% endif %}
             
+
           </ul>
         </div>
       </div>
