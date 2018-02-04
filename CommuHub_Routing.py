@@ -55,17 +55,17 @@ app.config.update(
 Bootstrap(app)
 
 # Start of Khant's codes and routes
-# The route for URL navigation to all pages
+# The route for URL navigation to all pages TODO: NOW DISABLED, route only returns the HTML without any operations - Used only early in development
 @app.route('/')
 @app.route('/<path:page>/')
 def show_page(page=None):
     # print(page)  To test for page
     if page == "CommuHub_Home" or not page:  # Just the base host URL (no page value set) or homepage
         return render_template("CommuHub_Home.html", returnDate=timeFunctions.returnCurrentDate())
-    elif page != "favicon.ico":  # Called with a argument for page, that's not homepage or favicon
-        return render_template("{}.html".format(page))
-    else:  # For favicon request
-        return page
+    # elif page != "favicon.ico":  # Called with a argument for page, that's not homepage or favicon
+    #     return render_template("{}.html".format(page))
+    # else:  # For favicon request
+    #     return page
 
 @app.route('/Donation_Projects_Main/')
 def donationProjectsMain():
@@ -139,6 +139,10 @@ def donationProjectsOptionsNew():
 # End of Khant's codes and routes
 
 # Start of Alden's codes and routes
+@app.route('/jsonCalendar/')
+def jsonCalendar():
+    return render_template("json.html")
+
 @app.route('/calendardata/')
 def return_calendardata():
     start_date = request.args.get('start', '')

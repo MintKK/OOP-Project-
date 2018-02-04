@@ -7,6 +7,9 @@
 {% endblock %}
 
 {% block additionalprescripts %}
+{#    <script>#}
+{#        {{ projects }}#}
+{#    </script>#}
     <!-- Preloader CSS -->
     <script src="../static/vendor/modernizr-2.6.2.min.js"></script>
 {% endblock %}
@@ -21,151 +24,56 @@
 
         </div>
 
-<!-- Portfolio Grid Section -->
-<section id="portfolio">
-  <div class="container">
-    <h2 class="text-center">Donation listings</h2>
-    <hr class="star-primary">
-    <div class="row">
-      <div class="col-sm-4 portfolio-item">
-        <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-          <div class="caption">
-            <div class="caption-content">
-              <i class="fa fa-search-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../static/img/portfolio/cabin.png" alt="">
-        </a>
-      </div>
-      <div class="col-sm-4 portfolio-item">
-        <a class="portfolio-link" href="#portfolioModal2" data-toggle="modal">
-          <div class="caption">
-            <div class="caption-content">
-              <i class="fa fa-search-plus fa-3x"></i>
-            </div>
-          </div>
-          <img class="img-fluid" src="../static/img/portfolio/cake.png" alt="">
-        </a>
-      </div>
+    <div class="container">
 
-     <!-- {%  for listing in listings %} -->
-          {% endfor %}
-
-    <table class="table table-bordered table-hover table-sortable" id="tab_logic">
-            <thead>
-              <tr class="filters">
-                    <th class="text-center text-nowrap">Job name<input type="text" class="form-control" disabled></th>
-                    <th class="text-center text-nowrap">Salary range<input type="text" class="form-control" disabled></th>
-                    <th class="text-center text-nowrap">Related tags<input type="text" class="form-control" disabled></th>
-                    <th class="text-center text-nowrap">Industry type<input type="text" class="form-control" disabled></th>
-                    <!-- Last column -->
-                    <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
-                  <!-- Doesn't work??
-    <span data-toggle="tooltip" data-placement="top" data-container="body" title="(MESSAGE)"><span class="fa fa-2x fa-question-circle-o text-primary sr-icons"></span></span> -->
-                    </th>
-                </tr>
-                <tr>
-                    <!-- <button class="btn btn-primary btn-xs btn-filter"><span class="fa fa-filter"></span>Filter</button> -->
-                </tr>
-            </thead>
-            <tbody>
-                    <!-- Source code jobs -->
-    				<tr>
-						<td data-name="name">
-						   Software Engineer
-						</td>
-						<td data-name="range">
-                            US$70,000 - US$105,000 yearly
-						</td>
-						<td data-name="desc">
-                            Information Technology, IT, Office, Home
-						</td>
-    					<td data-name="sel">
-				            Quaternary Industry
-						</td>
-                        <td data-name="link">
-                        <!-- Class: job-link -->
-                            <a href="startbootstrap-portfolio-item-gh-pages/SoftwareEngineer.html" class='btn btn-info job-link'><span class="fa fa-link"></span></a>
-                        </td>
-					</tr>
-                    <tr>
-						<td data-name="name">
-				            Intern(General)
-						</td>
-						<td data-name="range">
-                             Situational
-						</td>
-						<td data-name="desc">
-                            Company, Office, Experience
-						</td>
-    					<td data-name="sel">
-				            Unspecified
-						</td>
-                        <td data-name="link">
-                            <a href="startbootstrap-portfolio-item-gh-pages/Intern(G).html" class='btn btn-info job-link'><span class="fa fa-link"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-						<td data-name="name">
-				            Astronaut
-						</td>
-						<td data-name="range">
-                            US$60,000 - $144,500 yearly
-						</td>
-						<td data-name="desc">
-                            Science, Research, Special
-						</td>
-    					<td data-name="sel">
-				            Primary Industry
-						</td>
-                        <td data-name="link">
-                            <a href="startbootstrap-portfolio-item-gh-pages/#.html" class='btn btn-danger job-link'><span class="fa fa-link"></span></a>
-                        </td>
-                    </tr>
-                    <tr>
-						<td data-name="name">
-				            Accountant
-						</td>
-						<td data-name="range">
-                            S$30,000 - S$80,600 yearly
-						</td>
-						<td data-name="desc">
-                            Business, Finance, Office
-						</td>
-    					<td data-name="sel">
-				            Tertiary Industry
-						</td>
-                        <td data-name="link">
-                            <a href="startbootstrap-portfolio-item-gh-pages/#.html" class='btn btn-danger job-link'><span class="fa fa-link"></span></a>
-                        </td>
-                    </tr>
-                    <!-- Load from jsonStore and clone from here -->
-                    <tr id='addr0' data-id="0" class="hidden">
-						<td data-name="name">
-                            <span name="name0">
-                            </span>
-						</td>
-						<td data-name="range">
-                            <span name="salary0">
-                            </span>
-						</td>
-						<td data-name="desc">
-                            <span name="desc0">
-                            </span>
-						</td>
-    					<td data-name="sel">
-                            <span name="sel0">
-                            </span>
-						</td>
-                        <td data-name="link">
-                            <a href="" class='btn btn-info job-link'><span class="fa fa-link"></span></a>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
+    <div id="pageTitle" class="pull left">
+        <h2>Donation projects</h2>
+        <p>Currently active projects</p>
     </div>
-  </div>
-</section>
+
+          <div class="row">
+            <div class="col-md-3 wow" id="sidebar">
+                <div>
+                    <a class="list-group-item active">Guardian
+                    </a>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="/medshop/guardian/cough_cold_allergy">Cough, Cold &
+                            Allergy</a>
+                            {#                        <span class="label label-primary pull-right">20</span>#}
+                        </li>
+                        <li class="list-group-item"><a href="/medshop/guardian/pain_fever">Pain & Fever</a>
+                            {#                    <span class="label label-success pull-right">20</span>#}
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <a class="list-group-item active list-group-item-success">Watsons
+                    </a>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="/medshop/watsons/colds_flu_nasal">Colds, Flu &
+                            Nasal</a>
+                            {#                        <span class="label label-primary pull-right">20</span>#}
+                        </li>
+                        <li class="list-group-item"><a href="/medshop/watsons/fever_analgesics">Fever &
+                            Analgesics</a>
+                            {#                          <span class="label label-success pull-right">20</span>#}
+                        </li>
+                    </ul>
+                </div>
+                {% if website == 'Guardian' or  website == 'Watsons' %}
+                    <div>
+                        <form id="live-search" action="" class="styled" method="post">
+                            <fieldset>
+                                <label>Filter Product Name:</label>
+                                <input type="text" class="text-input" id="filter" value=""/>
+                            </fieldset>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+          </div>
+    </div>
+
 {% endblock %}
 
 {% block modals %}
