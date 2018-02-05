@@ -183,7 +183,7 @@
                 {% for project in projects %}
                     <div class="col-md-4 text-center pName">
                         <div class="thumbnail">
-                            <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" />
+                            <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:150px; height:150px;" />
                         </div>
                         <div class="caption">
                             <h3 style="">{{ project.get_title() }}</h3>

@@ -175,16 +175,16 @@ def donationProjectsOptionsNew():
 # End of Khant's codes and routes
 
 # Start of Alden's codes and routes
-@app.route('/jsonCalendar/')
-def jsonCalendar():
-    return render_template("json.html")
+@app.route('/calendarstuff')
+def calendar():
+    return render_template("calendar.html")
 
-@app.route('/calendardata/')
+@app.route('/data')
 def return_calendardata():
     start_date = request.args.get('start', '')
     end_date = request.args.get('end', '')
 
-    with open("events.json", "r") as input_data:
+    with open("templates/events.json", "r") as input_data:
         return input_data.read()
 
 # End of Alden's codes and routes
