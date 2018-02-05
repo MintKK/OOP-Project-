@@ -382,7 +382,7 @@ def signup():
     form = RegisterForm()
 
     if current_user.is_authenticated == True:
-        return redirect(url_for('employees'))
+        return redirect(url_for('signup'))
 
     if form.validate_on_submit():
         new_user = User(username=form.username.data, email=form.email.data, password = form.password.data)
@@ -395,7 +395,7 @@ def signup():
             flash('Email or Username has already been taken!')
             return redirect(url_for('signup'))
 
-        return redirect(url_for('employees'))
+        return redirect(url_for('signup'))
 
     return render_template('signup.html', form = form)
 
