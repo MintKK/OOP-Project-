@@ -2,7 +2,7 @@ import datetime
 
 class DProject:
 
-    def __init__(self, title, creator, itemCategories, description, items, start_date, end_date, duration=None, status=None):
+    def __init__(self, title, creator, itemCategories, description, items, thumbnail, start_date, end_date, duration=None, status=None):
         # Maybe set default value for end date, default duration of project
         self.__p_id = ''  # May use to link for user designed HTML template
         self.__title = title
@@ -10,6 +10,7 @@ class DProject:
         self.__categories = itemCategories
         self.__description = description
         self.__items = items
+        self.__thumbnail = thumbnail
         self.__start_date = str(start_date) # Convert just in case
         # self.__start_date = str(datetime.datetime.now().day) + "/" + str(datetime.datetime.now().month) + "/" + str(datetime.datetime.now().year)  # DD-MM-YYYY format
         self.__end_date = str(end_date)  # Convert just in case
@@ -36,6 +37,9 @@ class DProject:
 
     def get_items(self):
         return self.__items
+
+    def get_thumbnail(self):
+        return self.__thumbnail
 
     def get_start_date(self):
         return self.__start_date
@@ -70,6 +74,9 @@ class DProject:
 
     def set_items(self, items):
         self.__items = items
+
+    def set_thumbnail(self, thumbnail):
+        self.__thumbnail = thumbnail
 
     def set_start_date(self, start_date):
         self.__start_date = start_date

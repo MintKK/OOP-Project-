@@ -15,6 +15,7 @@ $(document).ready(function() {
         errorElement: 'span',
         errorPlacement: function(error, element) {
             error.insertAfter(element.next('span').children());
+            // error.insert(element.closest('.error1').children());       Making error appear for the image upload
         },
         highlight: function(element) {
             $(element).next('span').show();
@@ -29,6 +30,7 @@ $(document).ready(function() {
             errorElement: 'span',
             errorPlacement: function(error, element) {
                 error.insertAfter(element.next('span').children());
+               // error.insert(element.closest('.error1').children());
             },
             highlight: function(element) {
                 $(element).next('span').show();

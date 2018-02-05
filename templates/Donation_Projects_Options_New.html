@@ -54,6 +54,30 @@
   font-weight: bold;
   font-size: 20px;
 }
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 50%;
+}
 </style>
 {% endblock %}
 
@@ -200,8 +224,21 @@ $(document).ready( function() {
                 <i class="error-log fa fa-exclamation-triangle"></i>
             </span>
         </div>
-        <div id="items" class="form-group">
-            ...class="form-control"...
+        <div id="" class="form-group">
+        <label class="fs-subtitle">Upload a thumbnail for your project</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-success btn-file">
+                        Browse…  <input type="file" id="imgInp" name="imgInp" data-rule-required="true" data-msg-required="Please upload an image file">
+                    </span>
+                    <span id="imgError" class="error1" style="display: none;">
+                        <i class="error-log fa fa-exclamation-triangle"></i>
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>
+            <br />
+            <img style="margin-left: 32.5%; width: 35%" id='img-upload'/>
         </div>
 
         <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
@@ -244,6 +281,58 @@ $(document).ready( function() {
 <script src='../static/js/jquery-validation/jquery.validate.min.js'></script>
 <script src='../static/js/jquery-validation/additional-methods.min.js'></script>
 <script src="../static/js/multistep_form.js"></script>
+
 <script>
+$(document).ready( function() {
+    	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [label]);
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+
+		    var input = $(this).parents('.input-group').find(':text'),
+		        log = label;
+
+		    if( input.length ) {
+		        input.val(log);
+		    } else {
+		        if( log ) alert(log);
+		    }
+
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		            $('#img-upload').attr('src', e.target.result);
+		        }
+
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+
+		$("#imgInp").change(function(){
+		    readURL(this);
+		});
+
+{#		<!-- Save image -->#}
+{#		// From <input> node#}
+{#        var elm = document.getElementById('imgInp'),#}
+{#            img = elm.files[0],#}
+{#            fileName = img.name, // not path#}
+{#            fileSize = img.size; // bytes#}
+{##}
+{#        // Parsing File#}
+{#        var reader = new FileReader(),#}
+{#            binary, base64;#}
+{#        reader.addEventListener('loadend', function () {#}
+{#            binary = reader.result; // binary data (stored as string), unsafe for most actions#}
+{#            base64 = btoa(binary); // base64 data, safer but takes up more memory#}
+{#        }, false);#}
+{#        reader.readAsBinaryString(img);#}
+	});
 </script>
 {% endblock %}

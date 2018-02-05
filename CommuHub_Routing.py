@@ -8,12 +8,15 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import select
 from models import *
 from flask_bootstrap import Bootstrap
+from base64 import *
+
 
 from Custom_Classes import *
 from CommuHub_Forms import *
 import Time_Functions as timeFunctions
 
-import firebase_admin, os
+import pyrebase
+import firebase_admin, os, tempfile
 from firebase_admin import credentials, db
 
 cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
@@ -23,17 +26,17 @@ default_app = firebase_admin.initialize_app(
      'storageBucket': 'gs://commuhub-2017.appspot.com/'
      })
 
-root = db.reference()
+firebase = pyrebase.initialize_app(
+    {'apiKey': "AIzaSyB-GRQBAeRWDpCrNM1TwBarLnIYaXkEjrk",
+    'authDomain': "commuhub-2017.firebaseapp.com",
+    'databaseURL': "https://commuhub-2017.firebaseio.com",
+    'projectId': "commuhub-2017",
+    'storageBucket': "commuhub-2017.appspot.com",
+    "serviceAccount": "cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json"
+     })
 
-# import pyrebase
-# config = {
-#   "apiKey": "apiKey",
-#   "authDomain": "projectId.firebaseapp.com",
-#   "databaseURL": "https://databaseName.firebaseio.com",
-#   "storageBucket": "projectId.appspot.com",
-#   "serviceAccount": "path/to/serviceAccountCredentials.json"
-# }
-# pyfirebase_app = pyrebase.initialize_app(config)
+auth = firebase.auth()
+root = db.reference()
 
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
@@ -73,11 +76,13 @@ def donationProjectsMain():
     projectsList = []
     for p_id in DProjects:
         eachProject = DProjects[p_id]
+        thumbnailutf8 = eachProject['Thumbnail']
         AProject = DProject(eachProject['Title'],
                              eachProject['Creator'],
                              eachProject['Categories'],
                              eachProject['Description'],
                              eachProject['Items'],
+                             "Placeholder",
                              eachProject['Start date'],
                              eachProject['End date'])
 
@@ -85,7 +90,7 @@ def donationProjectsMain():
         print(AProject.get_p_id())
         projectsList.append(AProject)
 
-    return render_template("Donation_Projects_Main.html", projects = projectsList)
+    return render_template("Donation_Projects_Main.html", projects = projectsList, thumbnailtest = thumbnailutf8)
 
 @app.route('/Donation_Projects_Options_test/', methods=['GET', 'POST'])
 def donationProjectsOptions():
@@ -110,6 +115,24 @@ def donationProjectsOptionsNew():
         description = request.form['description']
         print(description)
         #items = form.items.data
+
+        picture = request.files['imgInp']
+        # result: bytes
+
+        # base64_bytes = b64encode(picture)
+        # # result: bytes (again)
+        #
+        # encoded_pic = base64_bytes.decode('utf-8')
+        # # result: string (in utf-8)
+        # temp = tempfile.NamedTemporaryFile(delete=False)
+        # picture.save(temp.name)
+        # os.remove(temp.name)
+
+        print(picture)
+        firebase.storage().child('Thumbnails').put(picture)
+
+
+
         start_date = request.form['start_date']
         print(start_date)
         end_date = request.form['end_date']
@@ -118,7 +141,7 @@ def donationProjectsOptionsNew():
         # publisher = form.publisher.data
         # created_by = "U0001"  # hardcoded value
 
-        project = DProject(title, creator, itemCategories, description, "Items placeholder", start_date, end_date)
+        project = DProject(title, creator, itemCategories, description, "Items placeholder", "Placeholder", start_date, end_date)
 
         projects_db = root.child('DProjects')
         projects_db.push({
@@ -128,6 +151,7 @@ def donationProjectsOptionsNew():
             'Categories': project.get_categories(),
             'Description': project.get_description(),
             'Items': project.get_items(),
+            'Thumbnail': project.get_thumbnail(),
             'Start date': project.get_start_date(),
             'End date': project.get_end_date(),
         })

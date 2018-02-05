@@ -71,4 +71,7 @@ In addition to the request object there is also a second object called session w
                Consider using hero section on homepage (As seen on Lynda tutorial)
                Use a "pending" system for donations to be confirmed and progress updated
 
+               If time allows, implement extra page to create project form with dyanamic input to specify items and the goals
                If time allows, use accurate time from online --> Not computer's clock
+
+NOTE for presentation - Using jQuery UI for datepicker, using wow and animate.css/js for some effects, (not sure) using jQuery confirm for "feedback" boxes, using isotope.js for filter, etc.
