@@ -16,7 +16,7 @@ from CommuHub_Forms import *
 import Time_Functions as timeFunctions
 
 import pyrebase
-import firebase_admin, os, tempfile
+import firebase_admin, os
 from firebase_admin import credentials, db
 
 cred = credentials.Certificate("cred/commuhub-2017-firebase-adminsdk-mf4l3-cef43c054d.json")
@@ -89,7 +89,11 @@ def donationProjectsMain():
         AProject.set_p_id(p_id)
         print(AProject.get_p_id())
         print(AProject.get_thumbnail())
-        firebase.storage().child(("Thumbnails/" + AProject.get_p_id())).download("Thumbnails/" + (AProject.get_p_id() + ".jpg"))
+        # if not os.path.isfile("Thumbnails/" + AProject.get_p_id() + ".jpg"):
+        #     firebase.storage().child(("Thumbnails/" + AProject.get_p_id())).download("Thumbnails/" + (AProject.get_p_id() + ".jpg"))
+        AProject.set_thumbnail(firebase.storage().child(AProject.get_thumbnail()).get_url(None))
+        print(AProject.get_thumbnail())
+
         projectsList.append(AProject)
 
     return render_template("Donation_Projects_Main.html", projects = projectsList)
@@ -157,8 +161,8 @@ def donationProjectsOptionsNew():
             if eachProject['Title'] == project.get_title():
                 project.set_p_id(p_id)
 
-        firebase.storage().child('Thumbnails').child(project.get_p_id()).put(picture)
-        project.set_thumbnail("../Thumbnails/" + project.get_p_id() + ".jpg")
+        firebase.storage().child('Thumbnails').child((project.get_p_id() + ".jpg")).put(picture)
+        project.set_thumbnail("Thumbnails/" + project.get_p_id() + ".jpg")
 
         projects_db.child(project.get_p_id()).update({
             'ID': project.get_p_id(),
