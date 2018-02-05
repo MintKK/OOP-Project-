@@ -82,12 +82,14 @@ def donationProjectsMain():
                              eachProject['Categories'],
                              eachProject['Description'],
                              eachProject['Items'],
-                             "Placeholder",
+                             eachProject['Thumbnail path'],
                              eachProject['Start date'],
                              eachProject['End date'])
 
         AProject.set_p_id(p_id)
         print(AProject.get_p_id())
+        print(AProject.get_thumbnail())
+        firebase.storage().child(("Thumbnails/" + AProject.get_p_id())).download("Thumbnails/" + (AProject.get_p_id() + ".jpg"))
         projectsList.append(AProject)
 
     return render_template("Donation_Projects_Main.html", projects = projectsList)
@@ -116,7 +118,7 @@ def donationProjectsOptionsNew():
         print(description)
         #items = form.items.data
 
-        picture = request.files['imgInp'].read()
+        picture = request.files['imgInp']
         # result: bytes
         # base64_bytes = b64encode(picture)
         # # result: bytes (again)
@@ -144,7 +146,7 @@ def donationProjectsOptionsNew():
             'Categories': project.get_categories(),
             'Description': project.get_description(),
             'Items': project.get_items(),
-            'Thumbnail path': project.get_thumbnail(),
+            'Thumbnail path': " ",
             'Start date': project.get_start_date(),
             'End date': project.get_end_date(),
         })
@@ -155,19 +157,13 @@ def donationProjectsOptionsNew():
             if eachProject['Title'] == project.get_title():
                 project.set_p_id(p_id)
 
-        firebase.storage().child('Thumbnails').child(project.get_p_id()).put(picture, project.get_p_id())
-        project.set_thumbnail("/Thumbnails/" + project.get_p_id())
+        firebase.storage().child('Thumbnails').child(project.get_p_id()).put(picture)
+        project.set_thumbnail("../Thumbnails/" + project.get_p_id() + ".jpg")
 
-        projects_db.update({
+        projects_db.child(project.get_p_id()).update({
             'ID': project.get_p_id(),
             'Title': project.get_title(),
-            'Creator': project.get_creator(),
-            'Categories': project.get_categories(),
-            'Description': project.get_description(),
-            'Items': project.get_items(),
             'Thumbnail path': project.get_thumbnail(),
-            'Start date': project.get_start_date(),
-            'End date': project.get_end_date(),
         })
 
         #flash('Project added.', 'success')
