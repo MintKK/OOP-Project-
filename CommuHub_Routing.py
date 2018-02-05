@@ -76,7 +76,7 @@ def donationProjectsMain():
     projectsList = []
     for p_id in DProjects:
         eachProject = DProjects[p_id]
-        thumbnailutf8 = eachProject['Thumbnail']
+        #thumbnailutf8 = eachProject['Thumbnail']
         AProject = DProject(eachProject['Title'],
                              eachProject['Creator'],
                              eachProject['Categories'],
@@ -90,7 +90,7 @@ def donationProjectsMain():
         print(AProject.get_p_id())
         projectsList.append(AProject)
 
-    return render_template("Donation_Projects_Main.html", projects = projectsList, thumbnailtest = thumbnailutf8)
+    return render_template("Donation_Projects_Main.html", projects = projectsList)
 
 @app.route('/Donation_Projects_Options_test/', methods=['GET', 'POST'])
 def donationProjectsOptions():
@@ -116,23 +116,16 @@ def donationProjectsOptionsNew():
         print(description)
         #items = form.items.data
 
-        picture = request.files['imgInp']
+        picture = request.files['imgInp'].read()
         # result: bytes
-
         # base64_bytes = b64encode(picture)
         # # result: bytes (again)
-        #
         # encoded_pic = base64_bytes.decode('utf-8')
         # # result: string (in utf-8)
         # temp = tempfile.NamedTemporaryFile(delete=False)
         # picture.save(temp.name)
         # os.remove(temp.name)
-
         print(picture)
-        firebase.storage().child('Thumbnails').put(picture)
-
-
-
         start_date = request.form['start_date']
         print(start_date)
         end_date = request.form['end_date']
@@ -141,24 +134,43 @@ def donationProjectsOptionsNew():
         # publisher = form.publisher.data
         # created_by = "U0001"  # hardcoded value
 
-        project = DProject(title, creator, itemCategories, description, "Items placeholder", "Placeholder", start_date, end_date)
+        project = DProject(title, creator, itemCategories, description, "Items placeholder", " ", start_date, end_date)
 
         projects_db = root.child('DProjects')
         projects_db.push({
-            'ID': "Test",
+            'ID': " ",
             'Title': project.get_title(),
             'Creator': project.get_creator(),
             'Categories': project.get_categories(),
             'Description': project.get_description(),
             'Items': project.get_items(),
-            'Thumbnail': project.get_thumbnail(),
+            'Thumbnail path': project.get_thumbnail(),
             'Start date': project.get_start_date(),
             'End date': project.get_end_date(),
         })
 
+        DProjects = root.child("DProjects").get()
+        for p_id in DProjects:
+            eachProject = DProjects[p_id]
+            if eachProject['Title'] == project.get_title():
+                project.set_p_id(p_id)
+
+        firebase.storage().child('Thumbnails').child(project.get_p_id()).put(picture, project.get_p_id())
+        project.set_thumbnail("/Thumbnails/" + project.get_p_id())
+
+        projects_db.update({
+            'ID': project.get_p_id(),
+            'Title': project.get_title(),
+            'Creator': project.get_creator(),
+            'Categories': project.get_categories(),
+            'Description': project.get_description(),
+            'Items': project.get_items(),
+            'Thumbnail path': project.get_thumbnail(),
+            'Start date': project.get_start_date(),
+            'End date': project.get_end_date(),
+        })
 
         #flash('Project added.', 'success')
-
         return redirect(url_for('donationProjectsMain'))
 # End of Khant's codes and routes
 
