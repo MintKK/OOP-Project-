@@ -50,6 +50,15 @@
     .page3 {
     	background: #e5e5e5;
     }
+    .page4 {
+    	background: #e5e5e5;
+    }
+    .page5 {
+    	background: #e5e5e5;
+    }
+    .page6 {
+    	background: #e5e5e5;
+    }
 
     #navBar {
     	z-index: 3;
@@ -58,17 +67,28 @@
     	right: 3%;
     }
     #navBar .active {
-        background: #ccc;
+        background: #0000FF;
     }
     #navBar li {
         cursor: pointer;
         margin-bottom: 10px;
         transition: all .7s ease;
         border-radius: 50%;
-        line-height: 40px;
+        line-height: 51px;
         text-align: center;
-        width: 40px;
-        height: 40px;
+        width: 51px;
+        height: 51px;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    #navbar_tooltip {
+        width: 60px;
+        height: 60px;
+        z-index: 3;
+    	position: absolute;
+    	top: 11.5%;
+    	right: 10%;
     }
 
     p {
@@ -79,8 +99,8 @@
         /*left: 50%;
         top: 50%;
         margin-left: -100px;
-        margin-top: -50px;*/
-        opacity: 1;
+        margin-top: -50px;
+        opacity: 1;*/
         transition: all .8s ease;
         transform-origin: 50% 50%;
     }
@@ -103,6 +123,10 @@
         transform: rotate(360deg) translate(0,-200px) scale(.3);
         opacity: 0;
     }
+
+    .tooltip {
+    font-size: 110%;
+    }
     </style>
 {% endblock %}
 
@@ -116,138 +140,272 @@
 
 {% block body %}
     <!-- Preloader, disabled during development -->
-{#        <div id="loader-wrapper">#}
-{#        <div id="loader"></div>#}
-{##}
-{#            <div class="loader-section section-left"></div>#}
-{#            <div class="loader-section section-right"></div>#}
-{##}
-{#        </div>#}
+        <div id="loader-wrapper">
+        <div id="loader"></div>
+
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+
+        </div>
 
     <div class="container mainBody">
 
     <div id="pageTitle" class="pull left">
         <h2>Donation projects</h2>
+
+        <a class="btn btn-success text-center" style="width: 40%; margin-left: 30%; color: white;" href="{{ url_for("donationProjectsOptionsNew") }}">Create a project</a>
+
         <p>Currently active projects</p>
     </div>
-
-{#          <div class="row">#}
-{#            <div class="col-md-3 wow" id="sidebar">#}
-{#                <div>#}
-{#                    <a class="list-group-item active">Guardian#}
-{#                    </a>#}
-{#                    <ul class="list-group">#}
-{#                        <li class="list-group-item"><a href="/medshop/guardian/cough_cold_allergy">Cough, Cold &#}
-{#                            Allergy</a>#}
-                            {#                        <span class="label label-primary pull-right">20</span>#}
-{#                        </li>#}
-{#                        <li class="list-group-item"><a href="/medshop/guardian/pain_fever">Pain & Fever</a>#}
-                            {#                    <span class="label label-success pull-right">20</span>#}
-{#                        </li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#                <div>#}
-{#                    <a class="list-group-item active list-group-item-success">Watsons#}
-{#                    </a>#}
-{#                    <ul class="list-group">#}
-{#                        <li class="list-group-item"><a href="/medshop/watsons/colds_flu_nasal">Colds, Flu &#}
-{#                            Nasal</a>#}
-                            {#                        <span class="label label-primary pull-right">20</span>#}
-{#                        </li>#}
-{#                        <li class="list-group-item"><a href="/medshop/watsons/fever_analgesics">Fever &#}
-{#                            Analgesics</a>#}
-                            {#                          <span class="label label-success pull-right">20</span>#}
-{#                        </li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#                {% if website == 'Test' or  website == 'Test2' %}#}
-{#                    <div>#}
-{#                        <form id="live-search" action="" class="styled" method="post">#}
-{#                            <fieldset>#}
-{#                                <label>Filter Product Name:</label>#}
-{#                                <input type="text" class="text-input" id="filter" value=""/>#}
-{#                            </fieldset>#}
-{#                        </form>#}
-{#                    </div>#}
-{#                {% endif %}#}
-{#            </div>#}
-{#              <div>#}
-{#                  <h1>Testing</h1>#}
-{#              </div>#}
-{#          </div>#}
-
-    	<div id="pageContain">
+        <div id="pageContain" style="height: 700px">
 
 		<div class="page page1 current">
 			<div class="contain">
-                {% for project in projects %}
-                    <div class="col-md-4 text-center pName">
-                        <div class="thumbnail">
-                            <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:110%;" />
+
+                 <div class="row">
+                {% for project in projects[:3] %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:270px; border:2px solid #021a40;" />
+                            </div>
+                            <div class="caption">
+                                <h3 style="text-transform: none" class="text-center">{{ project.get_title() }}</h3>
+                                {% if project.get_categories()|length > 1 %}
+                                    <p style="color: black">Item categories:
+                                        {% for category in project.get_categories() %}
+                                            {% if category != project.get_categories()[-1] %}
+                                                <strong>{{ category }},  </strong>
+                                            {% else %}
+                                                <strong>{{ category }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                {% else %}
+                                    {% for category in project.get_categories() %}
+                                    <p style="color: black">Item category:
+                                    <strong>{{ category }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                                    </p>
+                                <p style="color: black">{{ project.get_description() }}</p>
+                                <span class="btn btn-success btn-file text-center" style="width: 40%; margin-left: 30%;">
+                                    <a class="portfolio-link" style="color: white;" href="#modal{{ project.get_p_id() }}" data-toggle="modal">View project</a>
+                                </span>
+                            </div>
                         </div>
-                        <div class="caption">
-                            <h3 style="">{{ project.get_title() }}</h3>
-                            {% if project.get_categories()|length > 1 %}
-                                <p>Item categories:
-                            {% elif project.get_categories()|length == 1 %}
-                                <p>Item category:
-                            {% endif %}
-                                {% for category in project.get_categories() %}
-                                <strong>{{ category }}</strong>
-                                {% endfor %}
-                            </p>
-                            <p>{{ project.get_description() }}</p>
-{#                            <p><a href="https://www.guardian.com.sg{{ products.get_link() }}"#}
-{#                                  title="Product" target='_blank'#}
-{#                                  onClick="window.open(this.href,'{{ products.get_name() }}',#}
-{#                                          'resizable,location=no,toolbar=no,status=no,scrollbars=yes,menubar=no,titlebar=yes,width=1000,height=500,left=0,top=0'); return false;">More#}
-{#                                Information</a></p>#}
-                        </div>
-                    </div>
                 {% endfor %}
-{#                    {% if website == 'Guardian' and type == 'cough_cold_allergy' and page == '1' %}#}
-{#                        {% for products in pdt %}#}
-{#                            <div class="col-md-4 text-center col-sm-6 col-xs-6 pdtName">#}
-{#                                <div class="thumbnail product-box">#}
-{#                                    <img src="https://www.guardian.com.sg{{ products.get_image() }}" alt=""/>#}
-{#                                    <div class="caption">#}
-{#                                        <h3 style="min-height: 4.5em;">{{ products.get_name() }}</h3>#}
-{#                                        <p>Price : <strong>{{ products.get_price() }}</strong></p>#}
-{#                                        <p><strong>{{ products.get_offer() }}</strong></p>#}
-{#                                        <p>Stock: <strong>{{ products.get_msg() }}</strong>#}
-{#                                            {% if products.get_msg() == '' %}In Stock{% endif %}</p>#}
-{#                                        <p><a href="https://www.guardian.com.sg{{ products.get_link() }}"#}
-{#                                              title="Product" target='_blank'#}
-{#                                              onClick="window.open(this.href,'{{ products.get_name() }}',#}
-{#                                                      'resizable,location=no,toolbar=no,status=no,scrollbars=yes,menubar=no,titlebar=yes,width=1000,height=500,left=0,top=0'); return false;">More#}
-{#                                            Information</a></p>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        {% endfor %}#}
-{#                    {% endif %}#}
+                 </div>
 
 			</div>
 		</div>
 
 		<div class="page page2">
 			<div class="contain">
-            <p>Test</p>
+
+             <div class="row">
+                {% for project in projects[3:6] %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:270px; height:270px; border:2px solid #021a40;" />
+                            </div>
+                            <div class="caption">
+                                <h3 style="text-transform: none" class="text-center">{{ project.get_title() }}</h3>
+                                {% if project.get_categories()|length > 1 %}
+                                    <p style="color: black">Item categories:
+                                        {% for category in project.get_categories() %}
+                                            {% if category != project.get_categories()[-1] %}
+                                                <strong>{{ category }},  </strong>
+                                            {% else %}
+                                                <strong>{{ category }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                {% else %}
+                                    {% for category in project.get_categories() %}
+                                    <p style="color: black">Item category:
+                                    <strong>{{ category }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                                    </p>
+                                <p style="color: black">{{ project.get_description() }}</p>
+                                <span class="btn btn-success btn-file text-center" style="width: 40%; margin-left: 30%;">
+                                    <a class="portfolio-link" style="color: white;" href="#modal{{ project.get_p_id() }}" data-toggle="modal">View project</a>
+                                </span>
+                            </div>
+                        </div>
+                {% endfor %}
+                 </div>
+
 			</div>
 		</div>
 
 		<div class="page page3">
 			<div class="contain">
-				<p>Test 2</p>
+
+                 <div class="row">
+                {% for project in projects[6:9] %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:270px; height:270px; border:2px solid #021a40;" />
+                            </div>
+                            <div class="caption">
+                                <h3 style="text-transform: none" class="text-center">{{ project.get_title() }}</h3>
+                                {% if project.get_categories()|length > 1 %}
+                                    <p style="color: black">Item categories:
+                                        {% for category in project.get_categories() %}
+                                            {% if category != project.get_categories()[-1] %}
+                                                <strong>{{ category }},  </strong>
+                                            {% else %}
+                                                <strong>{{ category }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                {% else %}
+                                    {% for category in project.get_categories() %}
+                                    <p style="color: black">Item category:
+                                    <strong>{{ category }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                                    </p>
+                                <p style="color: black">{{ project.get_description() }}</p>
+                                <span class="btn btn-success btn-file text-center" style="width: 40%; margin-left: 30%;">
+                                    <a class="portfolio-link" style="color: white;" href="#modal{{ project.get_p_id() }}" data-toggle="modal">View project</a>
+                                </span>
+                            </div>
+                        </div>
+                {% endfor %}
+                 </div>
+
+			</div>
+		</div>
+
+        <div class="page page4">
+			<div class="contain">
+
+                <div class="row">
+                {% for project in projects[9:12] %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:270px; height:270px; border:2px solid #021a40;" />
+                            </div>
+                            <div class="caption">
+                                <h3 style="text-transform: none" class="text-center">{{ project.get_title() }}</h3>
+                                {% if project.get_categories()|length > 1 %}
+                                    <p style="color: black">Item categories:
+                                        {% for category in project.get_categories() %}
+                                            {% if category != project.get_categories()[-1] %}
+                                                <strong>{{ category }},  </strong>
+                                            {% else %}
+                                                <strong>{{ category }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                {% else %}
+                                    {% for category in project.get_categories() %}
+                                    <p style="color: black">Item category:
+                                    <strong>{{ category }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                                    </p>
+                                <p style="color: black">{{ project.get_description() }}</p>
+                                <span class="btn btn-success btn-file text-center" style="width: 40%; margin-left: 30%;">
+                                    <a class="portfolio-link" style="color: white;" href="#modal{{ project.get_p_id() }}" data-toggle="modal">View project</a>
+                                </span>
+                            </div>
+                        </div>
+                {% endfor %}
+                 </div>
+
+			</div>
+		</div>
+
+		<div class="page page5">
+			<div class="contain">
+
+                <div class="row">
+                {% for project in projects[12:15] %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:270px; height:270px; border:2px solid #021a40;" />
+                            </div>
+                            <div class="caption">
+                                <h3 style="text-transform: none" class="text-center">{{ project.get_title() }}</h3>
+                                {% if project.get_categories()|length > 1 %}
+                                    <p style="color: black">Item categories:
+                                        {% for category in project.get_categories() %}
+                                            {% if category != project.get_categories()[-1] %}
+                                                <strong>{{ category }},  </strong>
+                                            {% else %}
+                                                <strong>{{ category }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                {% else %}
+                                    {% for category in project.get_categories() %}
+                                    <p style="color: black">Item category:
+                                    <strong>{{ category }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                                    </p>
+                                <p style="color: black">{{ project.get_description() }}</p>
+                                <span class="btn btn-success btn-file text-center" style="width: 40%; margin-left: 30%;">
+                                    <a class="portfolio-link" style="color: white;" href="#modal{{ project.get_p_id() }}" data-toggle="modal">View project</a>
+                                </span>
+                            </div>
+                        </div>
+                {% endfor %}
+                 </div>
+
+			</div>
+		</div>
+
+		<div class="page page6">
+			<div class="contain">
+
+                <div class="row">
+                {% for project in projects[15:18] %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ project.get_thumbnail() }}" alt="Thumbnail for {{ project.get_p_id() }}" style="width:100%; height:270px; height:270px; border:2px solid #021a40;" />
+                            </div>
+                            <div class="caption">
+                                <h3 style="text-transform: none" class="text-center">{{ project.get_title() }}</h3>
+                                {% if project.get_categories()|length > 1 %}
+                                    <p style="color: black">Item categories:
+                                        {% for category in project.get_categories() %}
+                                            {% if category != project.get_categories()[-1] %}
+                                                <strong>{{ category }},  </strong>
+                                            {% else %}
+                                                <strong>{{ category }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                {% else %}
+                                    {% for category in project.get_categories() %}
+                                    <p style="color: black">Item category:
+                                    <strong>{{ category }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                                    </p>
+                                <p style="color: black">{{ project.get_description() }}</p>
+                                <span class="btn btn-success btn-file text-center" style="width: 40%; margin-left: 30%;">
+                                    <a class="portfolio-link" style="color: white;" href="#modal{{ project.get_p_id() }}" data-toggle="modal">View project</a>
+                                </span>
+                            </div>
+                        </div>
+                {% endfor %}
+                 </div>
+
 			</div>
 		</div>
 
 
 	</div>
-	<ul id="navBar">
+
+    <span id="navbar_tooltip" data-toggle="tooltip" data-placement="left" title="Click on the numbers to go through pages!">
+        <span style="font-size: 60px;" class="fa fa-2x fa-question-circle-o text-primary sr-icons"></span>
+    </span>
+	<ul style="list-style: none" id="navBar">
 		<li>1</li>
 		<li>2</li>
 		<li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
 	</ul>
 
     </div>
@@ -264,7 +422,7 @@
     $(document).ready(function() {
 
          /* Preloading */
-        /*setTimeout(function(){
+        setTimeout(function(){
             $('body').addClass('loaded');
             $('h1').css('color','#32CD32');
         }, 3000);
@@ -298,7 +456,7 @@
                         marginTop: 0
                     });
                 }
-            });*/
+            });
     });
     </script>
 
@@ -319,7 +477,7 @@
                 },
                 opacity : [0, 1]                       // [opacityfrom, opacityto]
             },
-        mode : 'wheel,touch,nav:navBar',               // mode of fullpage
+        mode : 'touch,nav:navBar',               // mode of fullpage
         start : 0,                                     // which page will display when install
         easing : 'ease'                                // easing('ease','ease-in','ease-in-out' or use cubic-bezier like [.33, 1.81, 1, 1];
         //  ,onSwipeStart : function(index, thisPage) {   // callback before pageChange

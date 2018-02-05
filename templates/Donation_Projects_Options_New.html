@@ -3,6 +3,7 @@
 {% block additionalstyles %}
 <link rel="stylesheet" href="../static/vendor/jquery-ui-1.12.1/jquery-ui.min.css" />
 <link rel="stylesheet" href="../static/css/multistep_form_custom.css" />
+
 <style>
 /* Error messages and labels */
 .error1{
@@ -185,27 +186,27 @@ $(document).ready( function() {
             </span>
             <ul>
                 <li>
-                    <input id="CMoney" name="CMoney" type="checkbox" class="checkbox" value="CMoney" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CMoney" name="Money" type="checkbox" class="checkbox" value="Money" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CMoney">Money</label>
                 </li>
                 <li>
-                    <input id="CBooks" name="CBooks" type="checkbox" class="checkbox" value="CBooks" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CBooks" name="Books" type="checkbox" class="checkbox" value="Books" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CBooks">Books and papers</label>
                 </li>
                 <li>
-                    <input id="CClothes" name="CClothes" type="checkbox" class="checkbox" value="CClothes" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CClothes" name="Clothes" type="checkbox" class="checkbox" value="Clothes" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CClothes">Clothes</label>
                 </li>
                 <li>
-                    <input id="CFood" name="CFood" type="checkbox" class="checkbox" value="CFood" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="CFood" name="Food" type="checkbox" class="checkbox" value="Food" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="CFood">Food (Uncooked)</label>
                 </li>
                 <li>
-                    <input id="CAmenities" name="CAmenities" type="checkbox" class="checkbox" value="CAmenities" data-rule-require_from_group='[1,".checkbox"]'/>
-                    <label for="CAmenities">Other amenities</label>
+                    <input id="CTools" name="Tools" type="checkbox" class="checkbox" value="Tools" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <label for="CTools">Household and common tools</label>
                 </li>
                 <li>
-                    <input id="COthers" name="COthers" type="checkbox" class="checkbox" value="COthers" data-rule-require_from_group='[1,".checkbox"]'/>
+                    <input id="COthers" name="Others" type="checkbox" class="checkbox" value="Others" data-rule-require_from_group='[1,".checkbox"]'/>
                     <label for="COthers">Other items</label>
                 </li>
             </ul>
@@ -270,7 +271,10 @@ $(document).ready( function() {
     </fieldset>
 
     <fieldset>
-        <h2 class="fs-title text-center">General details successfully submitted</h2>
+        <h2 style="color: green;" class="fs-title text-center">General details successfully submitted</h2>
+        <br />
+        <br />
+        <h3 class="fs-title text-center">Loading data...</h3>
      </fieldset>
     </form>
 
@@ -283,6 +287,16 @@ $(document).ready( function() {
 <script src="../static/js/multistep_form.js"></script>
 
 <script>
+
+{#    document.getElementById("myForm").onsubmit = function() {myFunction()};#}
+{##}
+{#    function myFunction() {#}
+{#        /* Preloading */#}
+{#        setTimeout(function () {#}
+{#            $('body').addClass('loaded');#}
+{#            $('h1').css('color', '#32CD32');#}
+{#        }, 3000);#}
+{#    }#}
 $(document).ready( function() {
     	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this),
@@ -316,6 +330,13 @@ $(document).ready( function() {
 
 		$("#imgInp").change(function(){
 		    readURL(this);
+
+          $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+          });
 		});
 
 {#		<!-- Save image -->#}

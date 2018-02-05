@@ -112,7 +112,7 @@ def donationProjectsOptionsNew():
         creator = request.form['creator']
         print(creator)
         itemCategories = []
-        allItemCategories = ("CMoney", "CBooks", "CClothes", "CFood", "CAmenities", "COthers")
+        allItemCategories = ("Money", "Books", "Clothes", "Food", "Tools", "Others")
         for category in allItemCategories:
             if request.form.get(category) is not None:
                 print(request.form[category])
