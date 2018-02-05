@@ -177,7 +177,7 @@ def donationProjectsOptionsNew():
 # Start of Alden's codes and routes
 @app.route('/calendarstuff')
 def calendar():
-    return render_template("calendar.html")
+    return render_template("Calendar.html")
 
 @app.route('/data')
 def return_calendardata():
