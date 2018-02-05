@@ -1,0 +1,21 @@
+from flask import Flask, request, render_template, jsonify
+import json
+
+app = Flask(__name__)
+
+
+@app.route('/calendarstuff')
+def calendar():
+    return render_template("calendar.html")
+
+
+@app.route('/data')
+def return_calendardata():
+    start_date = request.args.get('start', '')
+    end_date = request.args.get('end', '')
+
+    with open("templates/events.json", "r") as input_data:
+        return input_data.read()
+
+if __name__ == '__main__':
+    app.run(debug = True)
