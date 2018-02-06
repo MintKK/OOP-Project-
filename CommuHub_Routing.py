@@ -40,8 +40,8 @@ root = db.reference()
 
 # Required line, __name__ contains all the Flask module names(?)
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.db'
-# sqldb.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.db'
+sqldb.init_app(app)
 
 # Might need later
 # app.config.from_object()
@@ -324,7 +324,7 @@ def edit_employees(id):
 @app.route('/events/')
 def events():
     all_events = Events.query.all()
-    return render_template('events.html', all_events=all_events)
+    return render_template('EventCalendar.html.html', all_events=all_events)
 
 
 @app.route('/events/add/', methods=['GET', 'POST'])
@@ -403,7 +403,7 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('employees'))
+    return render_template('CommuHub_Home.html')
 
 # End of Ahmad's codes and routes
 
